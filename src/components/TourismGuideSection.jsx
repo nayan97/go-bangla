@@ -13,7 +13,7 @@ const TourismGuideSection = () => {
       .then(res => res.json())
       .then(setPackages);
 
-    fetch("/api/guides/random")
+    fetch("http://localhost:3000/api/guides/random")
       .then(res => res.json())
       .then(setGuides);
   }, []);
@@ -29,7 +29,10 @@ const TourismGuideSection = () => {
 
         {/* Packages Tab */}
         <TabPanel>
-          <div className="grid md:grid-cols-3 gap-6 mt-4">
+              <div>
+                <h1>tour Packages</h1>
+            </div>
+          {/* <div className="grid md:grid-cols-3 gap-6 mt-4">
             {packages.map(pkg => (
               <div key={pkg._id} className="bg-white rounded-xl shadow-md p-4">
                 <img src={pkg.image} alt={pkg.title} className="rounded-md h-40 w-full object-cover" />
@@ -46,11 +49,14 @@ const TourismGuideSection = () => {
                 </div>
               </div>
             ))}
-          </div>
+          </div> */}
         </TabPanel>
 
         {/* Guides Tab */}
         <TabPanel>
+            <div>
+                <h1>tour Guide</h1>
+            </div>
           <div className="grid md:grid-cols-3 gap-6 mt-4">
             {guides.map(guide => (
               <div key={guide._id} className="bg-white rounded-xl shadow-md p-4">
