@@ -1,32 +1,31 @@
-import React from 'react';
-import { Typewriter } from "react-simple-typewriter";
+import React, { useEffect, useState } from "react";
+
+const texts = [
+  "Plan your journey today",
+  "Book trusted tour guides",
+  "Travel with comfort & safety",
+];
 
 const TypeWriter = () => {
-    return (
-        <div>
-            <div className="relative z-10 flex items-center h-full px-10 text-left text-white">
-                <div>
-                    <h1 className="text-4xl md:text-6xl font-bold mb-4">
-                        Hire Our Best{" "}
-                        <span className="text-success">
-                        <Typewriter
-                            words={["React Developer", "JS Developer", "Laravel Developer"]}
-                            loop
-                            cursor
-                            cursorStyle="|"
-                            typeSpeed={80}
-                            deleteSpeed={50}
-                            delaySpeed={1500}
-                        />
-                        </span>
-                    </h1>
-                    <p className="text-lg max-w-lg">
-                        Crafting beautiful interfaces and experiences with React and Tailwind CSS.
-                    </p>
-                </div>
-            </div>
-        </div>
-    );
+  const [index, setIndex] = useState(0);
+  const [text, setText] = useState("");
+
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      setText(texts[index].slice(0, i++));
+      if (i > texts[index].length) {
+        clearInterval(interval);
+        setTimeout(() => {
+          setIndex((prev) => (prev + 1) % texts.length);
+          setText("");
+        }, 1500);
+      }
+    }, 100);
+    return () => clearInterval(interval);
+  }, [index]);
+
+  return <p className="text-lg font-medium italic">{text}|</p>;
 };
 
 export default TypeWriter;

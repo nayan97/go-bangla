@@ -1,12 +1,16 @@
 import React from 'react';
-import Slider from '../../components/Slider';
+import SwiperSlider from '../../components/SwiperSlider';
+import TopAttractions from '../../components/TopAttractions';
+import TouristTips from '../../components/TouristTips';
 
 const Home = () => {
-    return (
-        <div>
-             <Slider></Slider>
-        </div>
-    );
+  return (
+    <div>
+      <SwiperSlider />
+      <TopAttractions />
+      <TouristTips />
+    </div>
+  );
 };
 
 export default Home;
