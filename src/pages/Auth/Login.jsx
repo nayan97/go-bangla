@@ -1,25 +1,37 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import Social from "../../pages/Auth/Social"
-
+import Social from "../../pages/Auth/Social";
+import { useLocation, useNavigate } from "react-router";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
-
+  const { loginUser } = useAuth();
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
+  const location = useLocation();
+  const navigate = useNavigate();
+  // console.log(location);
+  const from = location.state?.from || "/";
 
-
-  
-
-
+  const onSubmit = (data) => {
+    // console.log(data);
+    loginUser(data.email, data.password)
+      .then((result) => {
+        console.log(result.user);
+        navigate(from);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <div>
-      <form onSubmit={handleSubmit()}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <fieldset className="fieldset">
           <label className="label">Email</label>
           <input
