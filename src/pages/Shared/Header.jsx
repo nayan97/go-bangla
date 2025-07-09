@@ -1,9 +1,19 @@
 import React from "react";
 import { NavLink } from "react-router";
+import useAuth from "../../hooks/useAuth";
 
 
 const Header = () => {
- 
+    const { user, logoutUser } = useAuth();
+  const handleLogout = () => {
+    logoutUser()
+      .then(() => {
+        console.log("logout successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const Navlinks = (
     <>
@@ -56,6 +66,18 @@ const Header = () => {
         </div>
         <div className="navbar-end">
 
+       {user ? (
+            <>
+              <a
+                href="/login"
+                className="btn btn-error text-white"
+                onClick={handleLogout}
+              >
+                Logout
+              </a>
+            </>
+          ) : (
+            <>
               <div className="flex gap-2">
                 <NavLink className="btn" to="/login">
                   Login
@@ -64,6 +86,8 @@ const Header = () => {
                   Register
                 </NavLink>
               </div>
+            </>
+          )}
            
          
         </div>
