@@ -22,7 +22,7 @@ const attractions = [
   {
     name: "Sundarbans",
     image:
-      "https://i.ibb.co/7xSrttTR/istockphoto-1550261852-612x612.jpg",
+      "https://i.ibb.co/6Rvp6Lvs/sun-banner-3.webp",
     description: "The largest mangrove forest in the world, home to the Royal Bengal Tiger.",
   },
 ];

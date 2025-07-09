@@ -1,8 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth"
 
 
 const Register = () => {
+  const { createUser} = useAuth();
 
   const {
     register,
@@ -10,7 +12,20 @@ const Register = () => {
     handleSubmit,
   } = useForm();
 
+const onSubmit = data =>{
+  // console.log(data);
+createUser(data.email, data.password)
+  .then(async (result) => {
+      console.log(result.user)
 
+    })
+    .catch((error) => {
+      console.error('Error creating user:', error);
+    });
+
+
+  
+}
 
 
 
@@ -19,13 +34,13 @@ const Register = () => {
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
         <div className="card-body">
           <h1 className="text-5xl font-bold">Register Here!</h1>
-          <form onSubmit={handleSubmit()}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <fieldset className="fieldset">
               <label className="label">Name</label>
               <input
                 type="text"
                 {...register("name", {
-                  required: true,
+                  required: false,
                 })}
                 name="name"
                 className="input"
