@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import Social from "../../pages/Auth/Social"
 
 
 const Login = () => {
@@ -59,7 +60,7 @@ const Login = () => {
           </p>
         </fieldset>
       </form>
-      {/* <Social></Social> */}
+      <Social></Social>
     </div>
   );
 };

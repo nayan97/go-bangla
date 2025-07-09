@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth"
+import Social from "../../pages/Auth/Social"
 
 
 const Register = () => {
@@ -94,7 +95,7 @@ createUser(data.email, data.password)
               </p>
             </fieldset>
           </form>
-          {/* <Social></Social> */}
+          <Social></Social>
         </div>
       </div>
     </div>
