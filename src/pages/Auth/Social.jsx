@@ -14,8 +14,10 @@ const Social = () => {
   const handleGoogleLogin = () => {
     loginWithGoogle()
       .then( async(result) => {
-        console.log(result);
+        // console.log(result);
         const user = result.user;
+        console.log(user);
+        
 
       })
       .catch((error) => {

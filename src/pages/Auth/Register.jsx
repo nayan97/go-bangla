@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import useAuth from "../../hooks/useAuth"
-import Social from "../../pages/Auth/Social"
+import useAuth from "../../hooks/useAuth";
+import useAxios from "../../hooks/useAxios";
 
+import Social from "../../pages/Auth/Social";
+import axios from "axios";
 
 const Register = () => {
-  const { createUser} = useAuth();
+   const { createUser, updateUserProfile } = useAuth();
+    const axiosUserSecure = useAxios();
 
   const {
     register,
@@ -13,22 +16,58 @@ const Register = () => {
     handleSubmit,
   } = useForm();
 
-const onSubmit = data =>{
-  // console.log(data);
-createUser(data.email, data.password)
-  .then(async (result) => {
-      console.log(result.user)
+  const [profilePic, setProfilePic] = useState("");
 
+  const onSubmit = (data) => {
+  // console.log(data);
+
+  createUser(data.email, data.password)
+    .then(async (result) => {
+      console.log(result.user);
+
+      const userInfo = {
+        email: data.email,
+        role: 'user',
+        created_at: new Date().toISOString(),
+        last_signin_at: new Date().toISOString()
+      };
+
+      try {
+        const userRes = await axiosUserSecure.post('/api/users', userInfo);
+        console.log(userRes.data);
+      } catch (err) {
+        console.error('Error saving user to DB:', err.response?.data || err.message);
+        // Optionally, notify user or exit early here
+        return;
+      }
+
+      // ✅ Update profile only if DB insertion succeeds
+      updateUserProfile(data.name, profilePic)
+        .then(() => {
+          console.log('Profile updated');
+        })
+        .catch((error) => {
+          console.error('Error updating profile:', error);
+        });
     })
     .catch((error) => {
       console.error('Error creating user:', error);
     });
+};
+  const handlePhotoUpload = async (e) => {
+    const img = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", img);
 
+    const imgUploadUrl = `https://api.imgbb.com/1/upload?key=${
+      import.meta.env.VITE_image_upload_key
+    }`;
+    const res = await axios.post(imgUploadUrl, formData);
+    console.log(res.data);
+    
 
-  
-}
-
-
+    setProfilePic(res.data.data.display_url);
+  };
 
   return (
     <div>
@@ -44,12 +83,17 @@ createUser(data.email, data.password)
                   required: false,
                 })}
                 name="name"
-                className="input"
+                className="input w-full"
                 placeholder="Name"
               />
 
               <label className="label">Photo URL</label>
-       
+              <input
+                type="file"
+                onChange={handlePhotoUpload}
+                name="photoURL"
+                className="file-input file-input-bordered w-full"
+              />
 
               <label className="label">Email</label>
               <input
@@ -57,7 +101,7 @@ createUser(data.email, data.password)
                 {...register("email", {
                   required: true,
                 })}
-                className="input"
+                className="input w-full"
                 placeholder="Email"
               />
               {errors.email?.type === "required" && (
@@ -72,7 +116,7 @@ createUser(data.email, data.password)
                   required: true,
                   minLength: 6,
                 })}
-                className="input"
+                className="input w-full"
                 placeholder="Password"
               />
               {errors.password?.type === "required" && (
