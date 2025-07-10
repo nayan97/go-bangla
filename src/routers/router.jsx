@@ -6,6 +6,8 @@ import PrivateRoute from "../routes/PrivateRoute";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Register from "../pages/Auth/Register";
 import Body from "../pages/Admin/Body";
+import PendingGuides from "../pages/Admin/Guides/PendingGuides"
+
 import JoinAsGuide from "../pages/Staff/JoinAsGuide";
 
 export const router = createBrowserRouter([
@@ -20,7 +22,7 @@ export const router = createBrowserRouter([
         path: "login",
         Component: Login,
       },
-           {
+      {
         path: "register",
         Component: Register,
       },
@@ -34,21 +36,26 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
-            {
+      {
         index: true,
         Component: Body,
       },
-   {
-        path: 'join_as_guide',
-           element: (
-      <PrivateRoute>
-        <JoinAsGuide></JoinAsGuide>
-      </PrivateRoute>
-    )
-
+      {
+        path: "join_as_guide",
+        element: (
+          <PrivateRoute>
+            <JoinAsGuide></JoinAsGuide>
+          </PrivateRoute>
+        ),
       },
-
-    
+        {
+        path: "pending_guides",
+        element: (
+          <PrivateRoute>
+            <PendingGuides></PendingGuides>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);
