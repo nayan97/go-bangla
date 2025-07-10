@@ -6,6 +6,7 @@ import PrivateRoute from "../routes/PrivateRoute";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Register from "../pages/Auth/Register";
 import Body from "../pages/Admin/Body";
+import JoinAsGuide from "../pages/Staff/JoinAsGuide";
 
 export const router = createBrowserRouter([
   {
@@ -37,7 +38,15 @@ export const router = createBrowserRouter([
         index: true,
         Component: Body,
       },
-  
+   {
+        path: 'join_as_guide',
+           element: (
+      <PrivateRoute>
+        <JoinAsGuide></JoinAsGuide>
+      </PrivateRoute>
+    )
+
+      },
 
     
     ],

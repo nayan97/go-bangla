@@ -47,9 +47,9 @@ const Sidebar = ({ isOpen }) => {
           {isOpen && <span>Shipping</span>}
         </NavLink>
 
-        <NavLink to="/dashboard/join_as_guide" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
+        <NavLink to="/dashboard/myparcels" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
           <ShoppingBag className="w-5 h-5" />
-          {isOpen && <span>JoinAsGuide</span>}
+          {isOpen && <span>My Parcels</span>}
         </NavLink>
         <NavLink to="/dashboard/payment_histroy" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
           <Percent className="w-5 h-5" />
