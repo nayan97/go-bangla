@@ -1,65 +1,82 @@
-import React, { useEffect, useState } from 'react';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import axios from 'axios';
+import Spinner from "../../../components/Spinner";
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 
+
 const PendingGuides = () => {
-    const axiosdata =  useAxiosSecure();
-  const [guides, setGuides] = useState([]);
-  const [loading, setLoading] = useState(true);
+      const axiosdata = useAxiosSecure();
+  const queryClient = useQueryClient();
 
-useEffect(() => {
-  setLoading(true);
-axiosdata
-    .get("api/guides/pending")
-    .then((res) => {
-      const data = res.data;
-      console.log("Fetched Guides:", data);
+  const fetchPendingGuides = async () => {
+  const res = await axiosdata.get('/api/guides/pending');
+  return Array.isArray(res.data) ? res.data : res.data.guides || [];
+};
+  // ✅ Query to fetch pending guides
+  const { data: guides = [], isLoading } = useQuery({
+    queryKey: ['pending-guides'],
+    queryFn: fetchPendingGuides,
+  });
 
-      const guides = Array.isArray(data) ? data : data.guides || [];
-      setGuides(guides);
-    })
-    .catch((error) => {
-      console.error("Error fetching pending guides:", error);
-    })
-    .finally(() => setLoading(false));
-}, []);
+  // ✅ Mutation for approval
+  const approveMutation = useMutation({
+    mutationFn: (id) => axios.patch(`/api/guides/${id}`, { status: 'active' }),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['pending-guides']);
+    },
+  });
 
+  // ✅ Mutation for deletion
+  const deleteMutation = useMutation({
+    mutationFn: (id) => axios.delete(`/api/guides/${id}`),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['pending-guides']);
+    },
+  });
+
+  if (isLoading) return  <Spinner></Spinner>;
 
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-semibold mb-4">Pending Guides</h2>
-      
-      {loading ? (
-        <p>Loading...</p>
-      ) : guides.length === 0 ? (
-        <p>No pending guides found.</p>
-      ) : (
-        <div className="overflow-x-auto">
-          <table className="table-auto w-full border border-gray-200">
-            <thead>
-              <tr className="bg-gray-100">
-                <th className="px-4 py-2 border">#</th>
-                <th className="px-4 py-2 border">Name</th>
-                <th className="px-4 py-2 border">Email</th>
-                <th className="px-4 py-2 border">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {guides.map((guide, index) => (
-                <tr key={guide._id} className="text-center">
-                  <td className="px-4 py-2 border">{index + 1}</td>
-                  <td className="px-4 py-2 border">{guide.name || "N/A"}</td>
-                  <td className="px-4 py-2 border">{guide.email || "N/A"}</td>
-                  <td className="px-4 py-2 border">
-                    <span className="text-yellow-600 font-medium">{guide.status}</span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-    </div>
+    <table className="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {guides.map((guide, index) => (
+          <tr key={guide._id}>
+            <td>{index + 1}</td>
+            <td>{guide.name || 'N/A'}</td>
+            <td>{guide.email || 'N/A'}</td>
+            <td className="text-yellow-600 font-medium">
+              {guide.status || 'pending'}
+            </td>
+            <td>
+              <button
+                onClick={() => approveMutation.mutate(guide._id)}
+                className="btn btn-warning btn-sm mx-1"
+                disabled={approveMutation.isPending}
+              >
+                Approve
+              </button>
+              <button
+                onClick={() => deleteMutation.mutate(guide._id)}
+                className="btn btn-error btn-sm mx-1"
+                disabled={deleteMutation.isPending}
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   );
 };
 
