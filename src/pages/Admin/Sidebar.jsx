@@ -42,9 +42,9 @@ const Sidebar = ({ isOpen }) => {
           {isOpen && <span>Products</span>}
         </NavLink> */}
 
-        <NavLink to="/shipping" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
+        <NavLink to="/dashboard/make-admin" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
           <Truck className="w-5 h-5" />
-          {isOpen && <span>Shipping</span>}
+          {isOpen && <span>Make Admin</span>}
         </NavLink>
 
         <NavLink to="/dashboard/join_as_guide" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">

@@ -1,5 +1,4 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
 import Spinner from "../../../components/Spinner";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
@@ -58,11 +57,34 @@ const PendingGuides = () => {
 
   // ✅ Mutation for deletion
   const deleteMutation = useMutation({
-    mutationFn: (id) => axios.delete(`/api/guides/${id}`),
+    mutationFn: (id) => axiosdata.delete(`/api/guides/${id}`),
     onSuccess: () => {
       queryClient.invalidateQueries(["pending"]);
     },
   });
+
+    // Delete handler with Swal confirm
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'This will permanently delete the guide!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteMutation.mutate(id, {
+          onSuccess: () => {
+            Swal.fire('Deleted!', 'Guide has been removed.', 'success');
+          },
+          onError: () => {
+            Swal.fire('Error', 'Failed to delete guide.', 'error');
+          },
+        });
+      }
+    });
+  };
 
   if (isLoading) return <Spinner></Spinner>;
 
@@ -97,7 +119,7 @@ const PendingGuides = () => {
                   Approve
                 </button>
                 <button
-                  onClick={() => deleteMutation.mutate(guide._id)}
+                  onClick={() =>  handleDelete(guide._id)}
                   className="btn btn-error btn-sm mx-1"
                   disabled={deleteMutation.isPending}
                 >
