@@ -5,9 +5,15 @@ import { Outlet } from "react-router";
 
 
 
+
 const DashboardLayout = () => {
+  
+ 
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  console.log("Sidebar Open:", sidebarOpen);
+  // console.log("Sidebar Open:", sidebarOpen);
+
+
+  
 
   return (
     <>

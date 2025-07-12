@@ -107,7 +107,8 @@ const MakeAdmin = () => {
               {users.map((user) => (
                 <tr key={user._id}>
                   <td className="border px-4 py-2">{user.email}</td>
-                  <td className="border px-4 py-2">{new Date(user.createdAt).toLocaleDateString()}</td>
+                  <td className="border px-4 py-2">{new Date(user.created_at).toLocaleString()}</td>
+
                   <td className="border px-4 py-2 capitalize">{user.role || 'user'}</td>
                   <td className="border px-4 py-2 text-center space-x-2">
                     {user.role === 'admin' ? (

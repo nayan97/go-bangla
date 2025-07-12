@@ -12,8 +12,11 @@ import {
   PackageCheck,
   Boxes,
 } from "lucide-react";
+import useUserRole from "../../hooks/useUserRole";
 
 const Sidebar = ({ isOpen }) => {
+   const { role, isLoading } = useUserRole();
+
   return (
     <aside className={`bg-[#ddd]  h-full p-4 transition-all duration-300 ${isOpen ? "w-64" : "w-20"} overflow-hidden`}>
       <div className="space-y-2">
@@ -41,11 +44,16 @@ const Sidebar = ({ isOpen }) => {
           <Tag className="w-5 h-5" />
           {isOpen && <span>Products</span>}
         </NavLink> */}
+        { !isLoading  && role === 'admin' &&
+          <>
+       
 
         <NavLink to="/dashboard/make-admin" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
           <Truck className="w-5 h-5" />
           {isOpen && <span>Make Admin</span>}
         </NavLink>
+        
+         </>}
 
         <NavLink to="/dashboard/join_as_guide" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
           <ShoppingBag className="w-5 h-5" />
