@@ -12,6 +12,7 @@ import MakeAdmin from "../pages/Admin/users/MakeAdmin"
 import JoinAsGuide from "../pages/Staff/JoinAsGuide";
 import Forbidden from "../components/Forbidden";
 import AdminRoute from "../routes/AdminRoute";
+import PackageDetails from "../pages/Users/PackageDetails/PackageDetails";
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
       {
         path: "unauthorized",
         Component: Forbidden,
+      },
+        {
+        path: "our-package",
+        Component: PackageDetails,
       },
       {
         path: "login",
