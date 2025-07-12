@@ -10,6 +10,8 @@ import PendingGuides from "../pages/Admin/Guides/PendingGuides"
 import MakeAdmin from "../pages/Admin/users/MakeAdmin"
 
 import JoinAsGuide from "../pages/Staff/JoinAsGuide";
+import Forbidden from "../components/Forbidden";
+import AdminRoute from "../routes/AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +20,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "unauthorized",
+        Component: Forbidden,
       },
       {
         path: "login",
@@ -61,9 +67,9 @@ export const router = createBrowserRouter([
          {
         path: "make-admin",
         element: (
-          <PrivateRoute>
+          <AdminRoute>
             <MakeAdmin></MakeAdmin>
-          </PrivateRoute>
+          </AdminRoute>
         ),
         
       },
