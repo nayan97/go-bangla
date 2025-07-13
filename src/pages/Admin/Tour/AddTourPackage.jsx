@@ -60,6 +60,7 @@ const AddTourPackage = () => {
       title: data.title,
       about: data.about,
       plan: data.plan,
+      type: data.type,
       price: data.price,
       guideIds: data.guideIds, // array of selected emails
       images: imageUrls,
@@ -91,6 +92,13 @@ const AddTourPackage = () => {
           {...register("title", { required: true })}
           type="text"
           placeholder="Tour Title"
+          className="input input-bordered w-full"
+        />
+                {/* Title */}
+        <input
+          {...register("type", { required: true })}
+          type="text"
+          placeholder="Beach -Adventure-Cultural- etc"
           className="input input-bordered w-full"
         />
         {/* Price*/}
