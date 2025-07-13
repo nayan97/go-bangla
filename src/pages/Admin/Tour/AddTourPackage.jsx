@@ -3,9 +3,10 @@ import { useForm } from "react-hook-form";
 
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const AddTourPackage = () => {
-    const axiosdata = useAxiosSecure();
+  const axiosdata = useAxiosSecure();
   const [guides, setGuides] = useState([]);
 
   useEffect(() => {
@@ -28,17 +29,19 @@ const AddTourPackage = () => {
 
   const handleImageUpload = async (e) => {
     const files = e.target.files;
-    const uploaded = [];
     setUploading(true);
+
+    const uploaded = [];
 
     for (const file of files) {
       const formData = new FormData();
       formData.append("image", file);
+
       try {
         const res = await axios.post(
           `https://api.imgbb.com/1/upload?key=${
-      import.meta.env.VITE_image_upload_key
-    }`,
+            import.meta.env.VITE_image_upload_key
+          }`,
           formData
         );
         uploaded.push(res.data.data.url);
@@ -47,30 +50,37 @@ const AddTourPackage = () => {
       }
     }
 
-    setImageUrls(uploaded);
+    // ✅ Append new uploaded images to existing list
+    setImageUrls((prev) => [...prev, ...uploaded]);
     setUploading(false);
   };
 
   const onSubmit = async (data) => {
-  const payload = {
-    title: data.title,
-    about: data.about,
-    plan: data.plan,
-    guideIds: data.guideIds, // array of selected emails
-    images: imageUrls,
+    const payload = {
+      title: data.title,
+      about: data.about,
+      plan: data.plan,
+      price: data.price,
+      guideIds: data.guideIds, // array of selected emails
+      images: imageUrls,
+    };
+    console.log(imageUrls);
+
+    try {
+      const res = await axiosdata.post("/api/packages", payload);
+      Swal.fire(
+        "Success!",
+        "Tour pakage added successfully.",
+        "success"
+      );
+      reset();
+      setImageUrls([]);
+      //   console.log(res);
+    } catch (error) {
+      console.error("Error saving package:", error);
+      Swal.fire("Error", "Something went wrong while approving.", "error");
+    }
   };
-
-  try {
-    const res = await axios.post('/api/packages', payload);
-    alert('Package added successfully!');
-    reset();
-    setImageUrls([]);
-  } catch (error) {
-    console.error('Error saving package:', error);
-    alert('Something went wrong!');
-  }
-};
-
 
   return (
     <div className="max-w-3xl mx-auto bg-white p-6 rounded-xl shadow">
@@ -81,6 +91,13 @@ const AddTourPackage = () => {
           {...register("title", { required: true })}
           type="text"
           placeholder="Tour Title"
+          className="input input-bordered w-full"
+        />
+        {/* Price*/}
+        <input
+          {...register("price", { required: true })}
+          type="number"
+          placeholder="Tour package price"
           className="input input-bordered w-full"
         />
 
@@ -111,15 +128,18 @@ const AddTourPackage = () => {
         {/* Guide IDs */}
         <select
           {...register("guideIds", { required: true })}
+          defaultValue=""
           className="select w-full"
         >
+          <option value="" disabled>
+            Pick a Tour Guide
+          </option>
           {guides.map((guide) => (
             <option key={guide._id} value={guide.email}>
               {guide.name}
             </option>
           ))}
         </select>
-
 
         {/* Multiple Image Upload */}
         <input
