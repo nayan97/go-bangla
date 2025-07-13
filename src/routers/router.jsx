@@ -8,6 +8,7 @@ import Register from "../pages/Auth/Register";
 import Body from "../pages/Admin/Body";
 import PendingGuides from "../pages/Admin/Guides/PendingGuides"
 import MakeAdmin from "../pages/Admin/users/MakeAdmin"
+import AddTourPackage from "../pages/Admin/Tour/AddTourPackage"
 
 import JoinAsGuide from "../pages/Staff/JoinAsGuide";
 import Forbidden from "../components/Forbidden";
@@ -74,6 +75,15 @@ export const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <MakeAdmin></MakeAdmin>
+          </AdminRoute>
+        ),
+        
+      },
+               {
+        path: "add-tour",
+        element: (
+          <AdminRoute>
+            <AddTourPackage></AddTourPackage>
           </AdminRoute>
         ),
         

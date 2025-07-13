@@ -52,6 +52,10 @@ const Sidebar = ({ isOpen }) => {
           <Truck className="w-5 h-5" />
           {isOpen && <span>Make Admin</span>}
         </NavLink>
+          <NavLink to="/dashboard/add-tour" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
+          <PackageCheck className="w-5 h-5" />
+          {isOpen && <span>Add Tour Plan</span>}
+        </NavLink>
         
          </>}
 
