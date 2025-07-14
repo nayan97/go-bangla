@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import axios from "axios";
 import Swal from "sweetalert2";
+import Select from 'react-select';
+
 
 const AddTourPackage = () => {
   const axiosdata = useAxiosSecure();
@@ -23,7 +25,7 @@ const AddTourPackage = () => {
       });
   }, []);
 
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, setValue } = useForm();
   const [imageUrls, setImageUrls] = useState([]);
   const [uploading, setUploading] = useState(false);
 
@@ -133,21 +135,27 @@ const AddTourPackage = () => {
           </div>
         </div>
 
-        {/* Guide IDs */}
-        <select
-          {...register("guideIds", { required: true })}
-          defaultValue=""
-          className="select w-full"
-        >
-          <option value="" disabled>
-            Pick a Tour Guide
-          </option>
-          {guides.map((guide) => (
-            <option key={guide._id} value={guide.email}>
-              {guide.name}
-            </option>
-          ))}
-        </select>
+{/* Multiselect Tour Guides */}
+<Select
+  isMulti
+  options={guides.map((guide) => ({
+    value: guide.name,
+    label: guide.name,
+  }))}
+  onChange={(selectedOptions) =>
+    setValue(
+      "guideIds",
+      selectedOptions.map((opt) => opt.value)
+    )
+  }
+  className="react-select-container"
+  classNamePrefix="react-select"
+/>
+<input
+  type="hidden"
+  {...register("guideIds", { required: true })}
+/>
+
 
         {/* Multiple Image Upload */}
         <input

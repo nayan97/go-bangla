@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import useAuth from '../../../hooks/useAuth';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import Swal from 'sweetalert2';
+import React, { useState } from "react";
+import useAuth from "../../../hooks/useAuth";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Swal from "sweetalert2";
 
-const BookingForm = ({ packageData, guides = [], onBooking }) => {
+const BookingForm = ({ packageData, onBooking }) => {
   const { user } = useAuth();
   const [date, setDate] = useState(new Date());
-  const [selectedGuide, setSelectedGuide] = useState('');
+  const [selectedGuide, setSelectedGuide] = useState("");
 
   const handleBooking = () => {
     if (!user) {
-      Swal.fire('Error', 'You must be logged in to book.', 'error');
+      Swal.fire("Error", "You must be logged in to book.", "error");
       return;
     }
 
@@ -22,21 +22,23 @@ const BookingForm = ({ packageData, guides = [], onBooking }) => {
       touristImage: user.photoURL,
       price: packageData?.price,
       tourDate: date,
-      tourGuide: selectedGuide,
-      status: 'pending',
+      tourGuide: packageData?.guideIds,
+      status: "pending",
     };
+    const ids = packageData.guideIds;
+    console.log(ids);
 
     // Save to DB here (onBooking callback or axios/fetch)
     onBooking?.(bookingInfo);
 
     Swal.fire({
-      title: 'Confirm your Booking',
+      title: "Confirm your Booking",
       text: 'View your booking in "My Bookings"',
-      icon: 'success',
-      confirmButtonText: 'Go to My Bookings',
+      icon: "success",
+      confirmButtonText: "Go to My Bookings",
     }).then((result) => {
       if (result.isConfirmed) {
-        window.location.href = '/dashboard/my-bookings';
+        window.location.href = "/dashboard/my-bookings";
       }
     });
   };
@@ -46,11 +48,36 @@ const BookingForm = ({ packageData, guides = [], onBooking }) => {
       <h2 className="text-2xl font-bold">Book This Tour</h2>
 
       <div className="space-y-2">
-        <input type="text" value={packageData?.name} readOnly className="input w-full" />
-        <input type="text" value={user?.displayName} readOnly className="input w-full" />
-        <input type="email" value={user?.email} readOnly className="input w-full" />
-        <input type="text" value={user?.photoURL} readOnly className="input w-full" />
-        <input type="text" value={`$${packageData?.price}`} readOnly className="input w-full" />
+        <input
+          type="text"
+          value={packageData?.title}
+          readOnly
+          className="input w-full"
+        />
+        <input
+          type="text"
+          value={user?.displayName}
+          readOnly
+          className="input w-full"
+        />
+        <input
+          type="email"
+          value={user?.email}
+          readOnly
+          className="input w-full"
+        />
+        <input
+          type="text"
+          value={user?.photoURL}
+          readOnly
+          className="input w-full"
+        />
+        <input
+          type="text"
+          value={`$${packageData?.price}`}
+          readOnly
+          className="input w-full"
+        />
 
         <DatePicker
           selected={date}
@@ -67,9 +94,9 @@ const BookingForm = ({ packageData, guides = [], onBooking }) => {
           <option value="" disabled>
             Select Tour Guide
           </option>
-          {guides.map((guide) => (
-            <option key={guide._id} value={guide.name}>
-              {guide.name}
+          {packageData.guideIds.map((guide, idx) => (
+            <option key={idx} value={guide}>
+              {guide}
             </option>
           ))}
         </select>
