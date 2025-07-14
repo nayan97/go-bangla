@@ -26,10 +26,12 @@ const TourismGuideSection = () => {
         Tourism & Travel Guide
       </h2>
       <Tabs>
-        <TabList>
+       <div className="text-center">
+         <TabList>
           <Tab>Our Packages</Tab>
           <Tab>Meet Our Tour Guides</Tab>
         </TabList>
+       </div>
 
         {/* Packages Tab */}
         <TabPanel>
@@ -53,7 +55,7 @@ const TourismGuideSection = () => {
                     ${pkg.price}
                   </p>
                   <button
-                    onClick={() => navigate(`/packages/${pkg._id}`)}
+                    onClick={() => navigate(`/package-details/${pkg._id}`)}
                     className="mt-3 btn btn-outline btn-sm"
                   >
                     View Package

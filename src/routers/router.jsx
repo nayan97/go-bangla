@@ -28,7 +28,7 @@ export const router = createBrowserRouter([
         Component: Forbidden,
       },
         {
-        path: "our-package",
+        path: "package-details/:id",
         Component: PackageDetails,
       },
       {
