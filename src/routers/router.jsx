@@ -14,6 +14,7 @@ import JoinAsGuide from "../pages/Staff/JoinAsGuide";
 import Forbidden from "../components/Forbidden";
 import AdminRoute from "../routes/AdminRoute";
 import PackageDetails from "../pages/Users/PackageDetails/PackageDetails";
+import MyBookings from "../pages/Users/UserPanel/MyBookings";
 
 export const router = createBrowserRouter([
   {
@@ -27,9 +28,13 @@ export const router = createBrowserRouter([
         path: "unauthorized",
         Component: Forbidden,
       },
-        {
+       {
         path: "package-details/:id",
-        Component: PackageDetails,
+        element: (
+          <PrivateRoute>
+            <PackageDetails></PackageDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "login",
@@ -60,6 +65,11 @@ export const router = createBrowserRouter([
             <JoinAsGuide></JoinAsGuide>
           </PrivateRoute>
         ),
+      },
+            {
+        path: "my-bookings",
+         Component: MyBookings,
+   
       },
         {
         path: "pending_guides",
