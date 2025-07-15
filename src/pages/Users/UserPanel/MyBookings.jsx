@@ -2,6 +2,7 @@ import React from 'react';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import useAuth from '../../../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const MyBookings = () => {
       const axiosSecure = useAxiosSecure();
@@ -19,6 +20,7 @@ const MyBookings = () => {
     data: bookings = [],
     isLoading,
     error,
+    refetch,
   } = useQuery({
     queryKey: ["pendingBookings", email], // refetches if email changes
     queryFn: fetchPendingBookings,
@@ -27,6 +29,39 @@ const MyBookings = () => {
 
   if (isLoading) return <p>Loading…</p>;
   if (error)     return <p>Error: {error.message}</p>;
+
+    const handleDelete = (id) => {
+    // console.log(id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .delete(`/api/booking/${id}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Parcel has been deleted.",
+                icon: "success",
+              });
+            }
+            refetch();
+          })
+
+          .catch((err) => {
+            console.error(err);
+            Swal.fire("Error!", "Failed to delete parcel.", "error");
+          });
+      }
+    });
+  };
   return (
     <div className="p-4">
       <h2 className="text-xl font-semibold mb-4">Pending bookings</h2>
@@ -34,8 +69,8 @@ const MyBookings = () => {
         <thead>
           <tr>
             <th>#</th>
-            <th>Name</th>
-            <th>Email</th>
+            <th>Package</th>
+            <th>Price</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
@@ -45,7 +80,7 @@ const MyBookings = () => {
             <tr key={booking._id}>
               <td>{index + 1}</td>
               <td>{booking.packageName || "N/A"}</td>
-              <td>{booking.email || "N/A"}</td>
+              <td>{booking.price || "N/A"}</td>
               <td className="text-yellow-600 font-medium">
                 {booking.status || "pending"}
               </td>
@@ -55,11 +90,12 @@ const MyBookings = () => {
                 >
                   Approve
                 </button>
-                <button
-                 
-                >
-                  Delete
-                </button>
+               <button
+                    onClick={() => handleDelete(booking._id)}
+                    className="btn btn-error btn-sm mx-1"
+                  >
+                    Delete
+                  </button>
               </td>
             </tr>
           ))}

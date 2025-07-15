@@ -15,12 +15,19 @@ import {
 import useUserRole from "../../hooks/useUserRole";
 
 const Sidebar = ({ isOpen }) => {
-   const { role, isLoading } = useUserRole();
+  const { role, isLoading } = useUserRole();
 
   return (
-    <aside className={`bg-[#ddd]  h-full p-4 transition-all duration-300 ${isOpen ? "w-64" : "w-20"} overflow-hidden`}>
+    <aside
+      className={`bg-[#ddd]  h-full p-4 transition-all duration-300 ${
+        isOpen ? "w-64" : "w-20"
+      } overflow-hidden`}
+    >
       <div className="space-y-2">
-        <NavLink to="/dashboard" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
+        <NavLink
+          to="/dashboard"
+          className="flex items-center gap-3 p-2 rounded hover:bg-base-300"
+        >
           <LayoutDashboard className="w-5 h-5" />
           {isOpen && <span>Dashboard</span>}
         </NavLink>
@@ -44,28 +51,46 @@ const Sidebar = ({ isOpen }) => {
           <Tag className="w-5 h-5" />
           {isOpen && <span>Products</span>}
         </NavLink> */}
-        { !isLoading  && role === 'admin' &&
+        {!isLoading && role === "admin" && (
           <>
-       
+            <NavLink
+              to="/dashboard/make-admin"
+              className="flex items-center gap-3 p-2 rounded hover:bg-base-300"
+            >
+              <Truck className="w-5 h-5" />
+              {isOpen && <span>Make Admin</span>}
+            </NavLink>
+            <NavLink
+              to="/dashboard/add-tour"
+              className="flex items-center gap-3 p-2 rounded hover:bg-base-300"
+            >
+              <PackageCheck className="w-5 h-5" />
+              {isOpen && <span>Add Tour Plan</span>}
+            </NavLink>
+            <NavLink
+              to="/dashboard/pending_guides"
+              className="flex items-center gap-3 p-2 rounded hover:bg-base-300"
+            >
+              <Percent className="w-5 h-5" />
+              {isOpen && <span>Pending Guides</span>}
+            </NavLink>
+          </>
+        )}
 
-        <NavLink to="/dashboard/make-admin" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
-          <Truck className="w-5 h-5" />
-          {isOpen && <span>Make Admin</span>}
-        </NavLink>
-          <NavLink to="/dashboard/add-tour" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
-          <PackageCheck className="w-5 h-5" />
-          {isOpen && <span>Add Tour Plan</span>}
-        </NavLink>
-        
-         </>}
-
-        <NavLink to="/dashboard/join_as_guide" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
+        <NavLink
+          to="/dashboard/join_as_guide"
+          className="flex items-center gap-3 p-2 rounded hover:bg-base-300"
+        >
           <ShoppingBag className="w-5 h-5" />
           {isOpen && <span>JoinAsGuide</span>}
         </NavLink>
-        <NavLink to="/dashboard/pending_guides" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
-          <Percent className="w-5 h-5" />
-          {isOpen && <span>Pending Guides</span>}
+
+        <NavLink
+          to="/dashboard/my-bookings"
+          className="flex items-center gap-3 p-2 rounded hover:bg-base-300"
+        >
+          <ShoppingBag className="w-5 h-5" />
+          {isOpen && <span>My Bookings</span>}
         </NavLink>
 
         {/* 
