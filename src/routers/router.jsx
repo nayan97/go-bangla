@@ -15,6 +15,7 @@ import Forbidden from "../components/Forbidden";
 import AdminRoute from "../routes/AdminRoute";
 import PackageDetails from "../pages/Users/PackageDetails/PackageDetails";
 import MyBookings from "../pages/Users/UserPanel/MyBookings";
+import Payment from "../pages/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -70,6 +71,11 @@ export const router = createBrowserRouter([
         path: "my-bookings",
          Component: MyBookings,
    
+      },
+          {
+        path: 'payment/:bookingId',
+        Component: Payment,
+
       },
         {
         path: "pending_guides",

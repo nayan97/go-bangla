@@ -1,14 +1,15 @@
-import React from 'react';
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import useAuth from '../../../hooks/useAuth';
-import Swal from 'sweetalert2';
+import React from "react";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useQuery} from "@tanstack/react-query";
+import useAuth from "../../../hooks/useAuth";
+import { Link, useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 const MyBookings = () => {
-      const axiosSecure = useAxiosSecure();
-  const queryClient = useQueryClient();
-    const { user } = useAuth();
-   const email = user?.email;  
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const email = user?.email;
 
   const fetchPendingBookings = async () => {
     const res = await axiosSecure.get(`/api/bookings/user/${email}`);
@@ -24,13 +25,19 @@ const MyBookings = () => {
   } = useQuery({
     queryKey: ["pendingBookings", email], // refetches if email changes
     queryFn: fetchPendingBookings,
-    enabled: !!email,                     // don't fire until email exists
+    enabled: !!email, // don't fire until email exists
   });
 
   if (isLoading) return <p>Loading…</p>;
-  if (error)     return <p>Error: {error.message}</p>;
+  if (error) return <p>Error: {error.message}</p>;
 
-    const handleDelete = (id) => {
+  //   console.log(parcels);
+  const handlePay = (id) => {
+    console.log("ipayment:", id);
+    navigate(`/dashboard/payment/${id}`);
+  };
+
+  const handleDelete = (id) => {
     // console.log(id);
     Swal.fire({
       title: "Are you sure?",
@@ -85,17 +92,22 @@ const MyBookings = () => {
                 {booking.status || "pending"}
               </td>
               <td>
-                <button
-              
-                >
-                  Approve
-                </button>
-               <button
-                    onClick={() => handleDelete(booking._id)}
-                    className="btn btn-error btn-sm mx-1"
+                <Link>
+                  <button
+                    onClick={() => handlePay(booking._id)}
+                    className="btn btn-warning btn-sm mx-1"
+                    disabled={booking.paymentStatus === "paid"}
                   >
-                    Delete
+                    Pay
                   </button>
+                </Link>
+
+                <button
+                  onClick={() => handleDelete(booking._id)}
+                  className="btn btn-error btn-sm mx-1"
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
