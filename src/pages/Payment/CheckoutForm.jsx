@@ -12,9 +12,8 @@ const CheckoutForm = () => {
   const { user } = useAuth();
   const stripe = useStripe();
   const elements = useElements();
-  const { bookinglId } = useParams();
-  console.log(bookinglId);
-  console.log(0.1 + 0.2 === 0.3);
+  const { bookingsId } = useParams();
+  // console.log(bookingsId);
 
   const axiosSecure = useAxiosSecure();
 
@@ -22,21 +21,21 @@ const CheckoutForm = () => {
 
   const navigate = useNavigate();
 
-  const { data: parcels = [], isPenning } = useQuery({
-    queryKey: ["my-parcels", bookinglId],
+  const { data: bookings= [], isPenning } = useQuery({
+    queryKey: ["my-bookings", bookingsId],
     queryFn: async () => {
-      const res = await axiosSecure.get(`api/bookings/${bookinglId}`);
+      const res = await axiosSecure.get(`/api/bookings/${bookingsId}`);
       return res.data;
     },
   });
   if (isPenning) {
     return <Spinner></Spinner>;
   }
-  // console.log(parcels);
-  const amount = parcels.price;
+  console.log(bookings);
+  const amount = bookings.price;
   const amountsInCents = amount * 100;
 
-  console.log(amountsInCents);
+  // console.log(amountsInCents);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -60,9 +59,9 @@ const CheckoutForm = () => {
     // send amount
     const res = await axiosSecure.post("/api/create-payment-intent", {
       amount: amountsInCents,
-      bookinglId,
+      bookingsId,
     });
-    // console.log(res);
+    console.log(res);
     const clientSecret = res.data.clientSecret;
     // Step 2: Confirm the payment using Stripe
     const { paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
@@ -86,7 +85,7 @@ const CheckoutForm = () => {
       // ✅ Optionally: Update your parcel status in DB here
 
       await axiosSecure.post("/api/payment-success", {
-        bookinglId,
+        bookingsId,
         amount,
         transactionId: paymentIntent.id,
         paymentMethod: paymentIntent.payment_method_types,
@@ -96,7 +95,7 @@ const CheckoutForm = () => {
           email: user.email,
         },
       });
-      navigate("/dashboard/myparcels");
+      navigate("/dashboard/my-bookings");
     }
   };
 

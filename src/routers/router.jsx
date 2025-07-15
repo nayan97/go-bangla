@@ -6,9 +6,9 @@ import PrivateRoute from "../routes/PrivateRoute";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Register from "../pages/Auth/Register";
 import Body from "../pages/Admin/Body";
-import PendingGuides from "../pages/Admin/Guides/PendingGuides"
-import MakeAdmin from "../pages/Admin/users/MakeAdmin"
-import AddTourPackage from "../pages/Admin/Tour/AddTourPackage"
+import PendingGuides from "../pages/Admin/Guides/PendingGuides";
+import MakeAdmin from "../pages/Admin/users/MakeAdmin";
+import AddTourPackage from "../pages/Admin/Tour/AddTourPackage";
 
 import JoinAsGuide from "../pages/Staff/JoinAsGuide";
 import Forbidden from "../components/Forbidden";
@@ -29,7 +29,7 @@ export const router = createBrowserRouter([
         path: "unauthorized",
         Component: Forbidden,
       },
-       {
+      {
         path: "package-details/:id",
         element: (
           <PrivateRoute>
@@ -67,42 +67,37 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-            {
+      {
         path: "my-bookings",
-         Component: MyBookings,
-   
+        Component: MyBookings,
       },
-          {
-        path: 'payment/:bookingId',
-        Component: Payment,
-
+      {
+        path: "payment/:bookingsId",
+        element: <Payment />,
       },
-        {
+      {
         path: "pending_guides",
         element: (
           <PrivateRoute>
             <PendingGuides></PendingGuides>
           </PrivateRoute>
         ),
-        
       },
-         {
+      {
         path: "make-admin",
         element: (
           <AdminRoute>
             <MakeAdmin></MakeAdmin>
           </AdminRoute>
         ),
-        
       },
-               {
+      {
         path: "add-tour",
         element: (
           <AdminRoute>
             <AddTourPackage></AddTourPackage>
           </AdminRoute>
         ),
-        
       },
     ],
   },
