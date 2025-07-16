@@ -91,7 +91,7 @@ const AssignedTours = () => {
                     Accept
                   </button>
                   <button
-                    className="btn btn-error btn-sm"
+                    className="btn btn-error btn-sm"                
                     onClick={() => handleReject(tour._id)}
                   >
                     Reject

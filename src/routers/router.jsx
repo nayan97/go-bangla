@@ -12,6 +12,7 @@ import AddTourPackage from "../pages/Admin/Tour/AddTourPackage";
 
 import JoinAsGuide from "../pages/Staff/JoinAsGuide";
 import AssignedTours from "../pages/Staff/AssignedTours";
+import AddStory from "../pages/Story/AddStory"
 
 import Forbidden from "../components/Forbidden";
 import AdminRoute from "../routes/AdminRoute";
@@ -70,6 +71,10 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: "add-story",
+        Component: AddStory,
+      },
+           {
         path: "my-bookings",
         Component: MyBookings,
       },

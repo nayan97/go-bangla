@@ -29,13 +29,14 @@ const Sidebar = ({ isOpen }) => {
           className="flex items-center gap-3 p-2 rounded hover:bg-base-300"
         >
           <LayoutDashboard className="w-5 h-5" />
-          {isOpen && <span>Dashboard</span>}
+          {isOpen && <span>Home</span>}
+        </NavLink>
+        <NavLink to="/dashboard/add-story" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
+          <FileText className="w-5 h-5" />
+          {isOpen && <span>Add Story</span>}
         </NavLink>
 
-        {/* <NavLink to="/categories" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
-          <FileText className="w-5 h-5" />
-          {isOpen && <span>Category</span>}
-        </NavLink>
+        {/* 
 
         <NavLink to="/subcategory" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
           <Boxes className="w-5 h-5" />
