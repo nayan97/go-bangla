@@ -42,22 +42,7 @@ const Sidebar = ({ isOpen }) => {
           {isOpen && <span>Manage Story</span>}
         </NavLink>
 
-        {/* 
 
-        <NavLink to="/subcategory" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
-          <Boxes className="w-5 h-5" />
-          {isOpen && <span>Sub Category</span>}
-        </NavLink>
-
-        <NavLink to="/brands" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
-          <PackageCheck className="w-5 h-5" />
-          {isOpen && <span>Brands</span>}
-        </NavLink>
-
-        <NavLink to="/products" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
-          <Tag className="w-5 h-5" />
-          {isOpen && <span>Products</span>}
-        </NavLink> */}
         {!isLoading && role === "admin" && (
           <>
             <NavLink
