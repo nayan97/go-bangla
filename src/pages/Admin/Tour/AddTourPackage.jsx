@@ -4,8 +4,7 @@ import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import axios from "axios";
 import Swal from "sweetalert2";
-import Select from 'react-select';
-
+import Select from "react-select";
 
 const AddTourPackage = () => {
   const axiosdata = useAxiosSecure();
@@ -71,11 +70,7 @@ const AddTourPackage = () => {
 
     try {
       const res = await axiosdata.post("/api/packages", payload);
-      Swal.fire(
-        "Success!",
-        "Tour pakage added successfully.",
-        "success"
-      );
+      Swal.fire("Success!", "Tour pakage added successfully.", "success");
       reset();
       setImageUrls([]);
       //   console.log(res);
@@ -96,7 +91,7 @@ const AddTourPackage = () => {
           placeholder="Tour Title"
           className="input input-bordered w-full"
         />
-                {/* Title */}
+        {/* Title */}
         <input
           {...register("type", { required: true })}
           type="text"
@@ -135,27 +130,23 @@ const AddTourPackage = () => {
           </div>
         </div>
 
-{/* Multiselect Tour Guides */}
-<Select
-  isMulti
-  options={guides.map((guide) => ({
-    value: guide.name,
-    label: guide.name,
-  }))}
-  onChange={(selectedOptions) =>
-    setValue(
-      "guideIds",
-      selectedOptions.map((opt) => opt.value)
-    )
-  }
-  className="react-select-container"
-  classNamePrefix="react-select"
-/>
-<input
-  type="hidden"
-  {...register("guideIds", { required: true })}
-/>
-
+        {/* Multiselect Tour Guides */}
+        <Select
+          isMulti
+          options={guides.map((guide) => ({
+            value: guide.name,
+            label: guide.name,
+          }))}
+          onChange={(selectedOptions) =>
+            setValue(
+              "guideIds",
+              selectedOptions.map((opt) => opt.value)
+            )
+          }
+          className="react-select-container"
+          classNamePrefix="react-select"
+        />
+        <input type="hidden" {...register("guideIds", { required: true })} />
 
         {/* Multiple Image Upload */}
         <input

@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 import { useNavigate } from 'react-router';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import useAuth from '../../hooks/useAuth';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const AddStory = () => {
+         const axiosSecure = useAxiosSecure();
+     
+      const { user } = useAuth();
   const { register, handleSubmit, reset } = useForm();
   const [uploading, setUploading] = useState(false);
   const [imageUrls, setImageUrls] = useState([]);
@@ -12,35 +18,41 @@ const AddStory = () => {
   const handleImageUpload = async (e) => {
     const files = e.target.files;
     setUploading(true);
-    const urls = [];
 
-    for (let file of files) {
+    const uploaded = [];
+
+    for (const file of files) {
       const formData = new FormData();
-      formData.append('image', file);
+      formData.append("image", file);
 
-      const res = await axios.post(
-        `https://api.imgbb.com/1/upload?key=YOUR_IMGBB_API_KEY`,
-        formData
-      );
-
-      urls.push(res.data.data.url);
+      try {
+        const res = await axios.post(
+          `https://api.imgbb.com/1/upload?key=${
+            import.meta.env.VITE_image_upload_key
+          }`,
+          formData
+        );
+        uploaded.push(res.data.data.url);
+      } catch (err) {
+        console.error("Upload error:", err);
+      }
     }
 
-    setImageUrls(urls);
+    // ✅ Append new uploaded images to existing list
+    setImageUrls((prev) => [...prev, ...uploaded]);
     setUploading(false);
   };
-
   const onSubmit = async (data) => {
     const storyData = {
       ...data,
       imageUrls,
-      userEmail: "user@example.com", // replace with auth email
     };
 
     try {
-      await axios.post('/api/stories', storyData);
+      await axiosSecure.post('/api/stories', storyData);
       reset();
-      setImageUrls([]);
+      setImageUrls([])
+      Swal.fire("Success!", "Story created successfully!", "success");
       navigate('/dashboard/manage-stories');
     } catch (err) {
       console.error("Failed to submit story", err);
@@ -52,6 +64,13 @@ const AddStory = () => {
       <h2 className="text-2xl font-bold mb-6">Add a Story</h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+               <input
+          {...register("email", { required: true })}
+          type="text"
+            value={user.email}
+          className="input input-bordered w-full bg-[#ddd] focus:outline-none"
+          readOnly
+        />
         <input
           {...register("title", { required: true })}
           type="text"
@@ -65,19 +84,26 @@ const AddStory = () => {
           className="textarea textarea-bordered w-full h-40"
         ></textarea>
 
+           {/* Multiple Image Upload */}
         <input
           type="file"
           multiple
           accept="image/*"
-          className="file-input file-input-bordered w-full"
           onChange={handleImageUpload}
+          className="file-input file-input-bordered w-full"
         />
-
-        {uploading && <p className="text-blue-500 text-sm">Uploading images...</p>}
+        {uploading && (
+          <p className="text-blue-500 text-sm">Uploading images...</p>
+        )}
         {imageUrls.length > 0 && (
           <div className="grid grid-cols-3 gap-2">
             {imageUrls.map((url, idx) => (
-              <img key={idx} src={url} alt="uploaded" className="rounded-lg" />
+              <img
+                key={idx}
+                src={url}
+                alt={`Uploaded ${idx}`}
+                className="rounded shadow"
+              />
             ))}
           </div>
         )}

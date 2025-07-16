@@ -19,6 +19,7 @@ import AdminRoute from "../routes/AdminRoute";
 import PackageDetails from "../pages/Users/PackageDetails/PackageDetails";
 import MyBookings from "../pages/Users/UserPanel/MyBookings";
 import Payment from "../pages/Payment/Payment";
+import ManageStory from "../pages/Story/ManageStory";
 
 export const router = createBrowserRouter([
   {
@@ -73,6 +74,10 @@ export const router = createBrowserRouter([
       {
         path: "add-story",
         Component: AddStory,
+      },
+       {
+        path: "manage-stories",
+        Component: ManageStory,
       },
            {
         path: "my-bookings",

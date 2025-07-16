@@ -35,6 +35,12 @@ const Sidebar = ({ isOpen }) => {
           <FileText className="w-5 h-5" />
           {isOpen && <span>Add Story</span>}
         </NavLink>
+        
+        
+        <NavLink to="/dashboard/manage-stories" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
+          <Boxes className="w-5 h-5" />
+          {isOpen && <span>Manage Story</span>}
+        </NavLink>
 
         {/* 
 
