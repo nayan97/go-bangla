@@ -11,6 +11,8 @@ import MakeAdmin from "../pages/Admin/users/MakeAdmin";
 import AddTourPackage from "../pages/Admin/Tour/AddTourPackage";
 
 import JoinAsGuide from "../pages/Staff/JoinAsGuide";
+import AssignedTours from "../pages/Staff/AssignedTours";
+
 import Forbidden from "../components/Forbidden";
 import AdminRoute from "../routes/AdminRoute";
 import PackageDetails from "../pages/Users/PackageDetails/PackageDetails";
@@ -70,6 +72,10 @@ export const router = createBrowserRouter([
       {
         path: "my-bookings",
         Component: MyBookings,
+      },
+         {
+        path: "assigned-tours",
+        Component: AssignedTours,
       },
       {
         path: "payment/:bookingsId",

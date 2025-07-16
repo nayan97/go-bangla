@@ -96,17 +96,19 @@ const MyBookings = () => {
                   <button
                     onClick={() => handlePay(booking._id)}
                     className="btn btn-warning btn-sm mx-1"
-                    disabled={booking.paymentStatus === "paid"}
+                    disabled={booking.status !== "pending"}
                   >
-                    Pay
+                    Pay Now
                   </button>
                 </Link>
 
                 <button
                   onClick={() => handleDelete(booking._id)}
                   className="btn btn-error btn-sm mx-1"
+                   disabled={booking.status !== "pending"}
+                  
                 >
-                  Delete
+                  Cancel 
                 </button>
               </td>
             </tr>

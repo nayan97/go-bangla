@@ -116,14 +116,14 @@ const PendingGuides = () => {
                   className="btn btn-warning btn-sm mx-1"
                   disabled={approveMutation.isPending}
                 >
-                  Approve
+                  Accept
                 </button>
                 <button
                   onClick={() =>  handleDelete(guide._id)}
                   className="btn btn-error btn-sm mx-1"
                   disabled={deleteMutation.isPending}
                 >
-                  Delete
+                 Reject
                 </button>
               </td>
             </tr>

@@ -72,26 +72,42 @@ const Sidebar = ({ isOpen }) => {
               className="flex items-center gap-3 p-2 rounded hover:bg-base-300"
             >
               <Percent className="w-5 h-5" />
-              {isOpen && <span>Pending Guides</span>}
+              {isOpen && <span>Manage Candidates</span>}
+            </NavLink>
+          </>
+        )}
+        {!isLoading && role === "user" && (
+          <>
+            <NavLink
+              to="/dashboard/join_as_guide"
+              className="flex items-center gap-3 p-2 rounded hover:bg-base-300"
+            >
+              <ShoppingBag className="w-5 h-5" />
+              {isOpen && <span>JoinAsGuide</span>}
+            </NavLink>
+
+            <NavLink
+              to="/dashboard/my-bookings"
+              className="flex items-center gap-3 p-2 rounded hover:bg-base-300"
+            >
+              <ShoppingBag className="w-5 h-5" />
+              {isOpen && <span>My Bookings</span>}
             </NavLink>
           </>
         )}
 
-        <NavLink
-          to="/dashboard/join_as_guide"
-          className="flex items-center gap-3 p-2 rounded hover:bg-base-300"
-        >
-          <ShoppingBag className="w-5 h-5" />
-          {isOpen && <span>JoinAsGuide</span>}
-        </NavLink>
+        {!isLoading && role === "guide" && (
+          <>
+            <NavLink
+              to="/dashboard/assigned-tours"
+              className="flex items-center gap-3 p-2 rounded hover:bg-base-300"
+            >
+              <ShoppingBag className="w-5 h-5" />
+              {isOpen && <span>My Assigned Tours</span>}
+            </NavLink>
 
-        <NavLink
-          to="/dashboard/my-bookings"
-          className="flex items-center gap-3 p-2 rounded hover:bg-base-300"
-        >
-          <ShoppingBag className="w-5 h-5" />
-          {isOpen && <span>My Bookings</span>}
-        </NavLink>
+          </>
+        )}
 
         {/* 
 

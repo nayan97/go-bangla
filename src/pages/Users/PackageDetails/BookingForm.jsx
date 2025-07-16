@@ -11,6 +11,7 @@ const BookingForm = ({ packageData}) => {
   const [selectedGuide, setSelectedGuide] = useState("");
 
   const axiosdata = useAxiosSecure();
+  // console.log(packageData.guideIds);
 
 const handleBooking = async () => {
 
@@ -26,6 +27,8 @@ const handleBooking = async () => {
     tourGuide: selectedGuide,
     status: "pending",
   };
+  
+
 
   try {
     const response = await axiosdata.post("/api/bookings", bookingInfo);
