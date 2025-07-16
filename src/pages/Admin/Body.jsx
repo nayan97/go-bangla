@@ -1,29 +1,26 @@
 import React from 'react';
+import useUserRole from '../../hooks/useUserRole';
+import Spinner from '../../components/Spinner'
+import Forbidden from '../../components/Forbidden'
+import UserHome from './Dashboard/UserHome';
+import GuideHome from './Dashboard/GuideHome';
+import AdminHome from './Dashboard/AdminHome';
 
 const Body = () => {
-    return (
-
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <div className="card bg-base-200 shadow">
-      <div className="card-body">
-        <h2 className="card-title">Total Orders</h2>
-        <p className="text-3xl font-bold">150</p>
-      </div>
-    </div>
-    <div className="card bg-base-200 shadow">
-      <div className="card-body">
-        <h2 className="card-title">Total Customers</h2>
-        <p className="text-3xl font-bold">50</p>
-      </div>
-    </div>
-    <div className="card bg-base-200 shadow">
-      <div className="card-body">
-        <h2 className="card-title">Total Sales</h2>
-        <p className="text-3xl font-bold">$1000</p>
-      </div>
-    </div>
-  </div>
-);
+  const {role, isLoading} = useUserRole();
+  if (isLoading) {
+  return <Spinner></Spinner>
+  }
+  if(role === 'user'){
+    return <UserHome></UserHome>
+  }else if(role === 'guide'){
+    return <GuideHome></GuideHome>
+  }else if(role === 'admin'){
+    return <AdminHome></AdminHome>
+  }else{
+    return <Forbidden></Forbidden>
+  }
+   
 
 };
 
