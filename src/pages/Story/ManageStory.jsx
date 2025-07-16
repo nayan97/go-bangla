@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { Link } from "react-router";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
+import Spinner from "../../components/Spinner";
 
 const ManageStory = () => {
   const { user, loading: authLoading } = useAuth();
@@ -15,9 +16,10 @@ const ManageStory = () => {
 
   // 3️⃣  Fetch stories that belong to this e‑mail
   const fetchStories = async () => {
-    const { data } = await axiosSecure.get("/api/stories",{ params: { email } } );
-    return data.data; // your backend returns { success, data }
-  };
+    const  res   = await axiosSecure.get(`/api/stories/by-email/${email}`);
+     return res.data?.data ?? [];
+  }; // your backend returns { success, data }
+ 
 
   const {
     data: stories = [], // default empty array
@@ -58,7 +60,7 @@ const ManageStory = () => {
   };
 
   if (isLoading) {
-    return <p className="text-center text-xl mt-10">Loading stories...</p>;
+    return <Spinner></Spinner>;
   }
 
   return (

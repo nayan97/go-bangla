@@ -12,7 +12,7 @@ const TourismGuideSection = () => {
     fetch("http://localhost:3000/api/packages/random")
       .then((res) => res.json())
       .then(setPackages);
-      console.log(packages.price);
+      // console.log(packages.price);
       
 
     fetch("http://localhost:3000/api/guides/random")

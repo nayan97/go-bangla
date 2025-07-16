@@ -12,18 +12,24 @@ import AddTourPackage from "../pages/Admin/Tour/AddTourPackage";
 
 import JoinAsGuide from "../pages/Staff/JoinAsGuide";
 import AssignedTours from "../pages/Staff/AssignedTours";
-import AddStory from "../pages/Story/AddStory"
+import AddStory from "../pages/Story/AddStory";
 
 import Forbidden from "../components/Forbidden";
+import Spinner from "../components/Spinner";
+import ErrorPage from "../components/ErrorPage";
+
 import AdminRoute from "../routes/AdminRoute";
 import PackageDetails from "../pages/Users/PackageDetails/PackageDetails";
 import MyBookings from "../pages/Users/UserPanel/MyBookings";
 import Payment from "../pages/Payment/Payment";
 import ManageStory from "../pages/Story/ManageStory";
+import EditStory from "../pages/Story/EditStory";
 
 export const router = createBrowserRouter([
   {
     Component: Layout,
+        hydrateFallbackElement: <Spinner></Spinner>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         index: true,
@@ -75,15 +81,19 @@ export const router = createBrowserRouter([
         path: "add-story",
         Component: AddStory,
       },
-       {
+      {
         path: "manage-stories",
         Component: ManageStory,
       },
-           {
+      {
+        path: "edit-story/:id",
+        Component: EditStory,
+      },
+      {
         path: "my-bookings",
         Component: MyBookings,
       },
-         {
+      {
         path: "assigned-tours",
         Component: AssignedTours,
       },
