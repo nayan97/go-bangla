@@ -4,36 +4,33 @@ import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
-
-
 const Trips = () => {
-    const axiosSecure = useAxiosSecure();
+  const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
-const fetchPackages = async () => {
-  const res = await axiosSecure.get("/api/packages");
-  return res.data?.data || []; // returns the sorted list
-};
-
+  const fetchPackages = async () => {
+    const res = await axiosSecure.get("/api/packages");
+    return res.data?.data || []; // returns the sorted list
+  };
 
   const { data: packages = [], isLoading } = useQuery({
     queryKey: ["packages"],
     queryFn: fetchPackages,
   });
 
-//   Sort: Latest first (assuming packages have a createdAt or updatedAt field)
-//   const sortedPackages = [...packages].sort(
-//     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-//   );
+  //   Sort: Latest first (assuming packages have a createdAt or updatedAt field)
+  //   const sortedPackages = [...packages].sort(
+  //     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  //   );
 
   return (
     <div className="p-6 bg-gray-50 rounded-xl shadow">
       <h2 className="text-3xl font-bold mb-4 text-center">
-        Tourism & Travel Guide
+        Tourism & Travel Packages
       </h2>
 
       <div>
-        <h1 className="text-xl font-semibold">Tour Packages</h1>
+        <h1 className="text-xl font-semibold">Our Packages</h1>
       </div>
 
       {isLoading ? (
