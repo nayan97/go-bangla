@@ -59,7 +59,7 @@ const EditProfileModal = ({ user, onClose }) => {
             type="text"
             disabled
             value="Admin"
-            className="input input-bordered w-full bg-gray-100"
+            className="input input-bordered w-full bg-gray-200"
           />
           <div className="flex justify-end gap-2">
             <button type="button" className="btn btn-[#ddd]" onClick={onClose}>

@@ -4,6 +4,7 @@ import { useQuery} from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import { Link, useNavigate } from "react-router";
 import Swal from "sweetalert2";
+import BookingSuccessCelebration from "../../../components/BookingSuccessCelebration";
 
 const MyBookings = () => {
   const axiosSecure = useAxiosSecure();
@@ -69,8 +70,10 @@ const MyBookings = () => {
       }
     });
   };
+
   return (
     <div className="p-4">
+      <BookingSuccessCelebration user={user} />
       <h2 className="text-xl font-semibold mb-4">Pending bookings</h2>
       <table className="table">
         <thead>
