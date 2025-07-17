@@ -10,7 +10,7 @@ const EditStory = () => {
   const { id } = useParams();
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const { register, handleSubmit, reset, setValue } = useForm();
+  const { register, handleSubmit, setValue } = useForm();
   const [imageUrls, setImageUrls] = useState([]);
   const [uploading, setUploading] = useState(false);
   const navigate = useNavigate();

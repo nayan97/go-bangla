@@ -24,6 +24,9 @@ import MyBookings from "../pages/Users/UserPanel/MyBookings";
 import Payment from "../pages/Payment/Payment";
 import ManageStory from "../pages/Story/ManageStory";
 import EditStory from "../pages/Story/EditStory";
+import CommunityPage from "../pages/page/CommunityPage";
+import AboutUs from "../pages/page/AboutUs";
+import Trips from "../pages/page/Trips";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +51,18 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: "community",
+        Component: CommunityPage,
+      },
+        {
+        path: "about-us",
+        Component: AboutUs,
+      },
+         {
+        path: "all-trips",
+        Component: Trips,
+      },
+        {
         path: "login",
         Component: Login,
       },
