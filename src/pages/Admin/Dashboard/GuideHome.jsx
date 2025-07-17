@@ -1,11 +1,11 @@
-import React from 'react';
+import ManageProfile from '../Dashboard/ManageProfile'
 
 const GuideHome = () => {
-    return (
-        <div>
-            ami staff
-        </div>
-    );
+  return (
+    <>
+       <ManageProfile />
+    </>
+  );
 };
 
 export default GuideHome;

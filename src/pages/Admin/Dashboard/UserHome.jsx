@@ -1,11 +1,14 @@
-import React from 'react';
+
+
+import ManageProfile from '../Dashboard/ManageProfile'
 
 const UserHome = () => {
-    return (
-        <div>
-            ami uuser
-        </div>
-    );
+
+  return (
+    <>
+     <ManageProfile />
+    </>
+  );
 };
 
 export default UserHome;

@@ -8,7 +8,7 @@ import useAuth from "../hooks/useAuth"; // <-- Assumes you have an auth context
 const TouristStories = () => {
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
-  const { user } = useAuth(); // Replace with your actual auth logic
+  const { user } = useAuth(); 
 
   const { data: stories = [], isLoading } = useQuery({
     queryKey: ["randomStories"],
