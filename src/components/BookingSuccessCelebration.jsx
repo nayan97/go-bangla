@@ -57,3 +57,7 @@ const BookingSuccessCelebration = ({ user }) => {
 };
 
 export default BookingSuccessCelebration;
+
+
+
+
