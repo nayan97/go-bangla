@@ -3,13 +3,15 @@ import { useForm } from "react-hook-form";
 import Social from "../../pages/Auth/Social";
 import { useLocation, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Login = () => {
-  const { loginUser } = useAuth();
+  const { loginUser, resetPassword } = useAuth();
   const {
     register,
     formState: { errors },
     handleSubmit,
+    getValues,
   } = useForm();
 
   const location = useLocation();
@@ -27,6 +29,26 @@ const Login = () => {
       .catch((error) => {
         console.error(error);
       });
+  };
+
+  const handleForgotPassword = async () => {
+    const email = getValues("email");
+
+    if (!email) {
+      return Swal.fire("Oops!", "Please enter your email first.", "warning");
+    }
+
+    try {
+      await resetPassword(email);
+      Swal.fire(
+        "Success!",
+        "Password reset link sent to your email.",
+        "success"
+      );
+    } catch (error) {
+      console.error(error);
+      Swal.fire("Error", error.message, "error");
+    }
   };
 
   return (
@@ -61,7 +83,13 @@ const Login = () => {
             </p>
           )}
           <div>
-            <a className="link link-hover">Forgot password?</a>
+            <button
+              type="button"
+              onClick={handleForgotPassword}
+              className="link link-hover text-blue-600"
+            >
+              Forgot password?
+            </button>
           </div>
           <button className="btn btn-neutral mt-4">Login</button>
           <p className="text-center mt-4">

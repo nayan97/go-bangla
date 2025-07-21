@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import axios from 'axios';
+import useAxiosSecure from '../hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 
 const EditProfileModal = ({ user, onClose }) => {
+  const axiosSecure = useAxiosSecure();
   const [formData, setFormData] = useState({
     name: user?.displayName || '',
     photoURL: user?.photoURL || '',
@@ -15,15 +17,14 @@ const EditProfileModal = ({ user, onClose }) => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      await axios.put(`/api/users/${user.email}`, {
+      await axiosSecure.put(`/api/users/${user.email}`, {
         displayName: formData.name,
         photoURL: formData.photoURL,
       });
-      alert("Profile updated!");
+      Swal.fire("Success!", "Payment completed successfully!", "success");
       onClose();
     } catch (error) {
-      console.error(error);
-      alert("Update failed");
+     Swal.fire("Error",error.message || "Booking failed", "error");
     }
   };
 
