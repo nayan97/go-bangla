@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 
 import { useNavigate } from "react-router";
@@ -36,7 +37,13 @@ const Trips = () => {
       {isLoading ? (
         <p className="text-center mt-10">Loading packages...</p>
       ) : (
-        <div className="grid md:grid-cols-3 gap-6 mt-4">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="grid md:grid-cols-3 gap-6 mt-4"
+        >
           {packages.map((pkg) => (
             <div key={pkg._id} className="bg-white rounded-xl shadow-md p-4">
               <img
@@ -57,7 +64,7 @@ const Trips = () => {
               </div>
             </div>
           ))}
-        </div>
+        </motion.div>
       )}
     </div>
   );

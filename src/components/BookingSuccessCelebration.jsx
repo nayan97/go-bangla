@@ -13,7 +13,7 @@ const BookingSuccessCelebration = ({ user }) => {
     const fetchBookingCount = async () => {
       try {
         const res = await axiosdata.get(`/api/bookings/count/${user.email}`);
-        console.log(res);
+        // console.log(res);
         
         if (res.data.count > 3) {
           setShowCongrats(true);
@@ -57,3 +57,7 @@ const BookingSuccessCelebration = ({ user }) => {
 };
 
 export default BookingSuccessCelebration;
+
+
+
+

@@ -28,11 +28,6 @@ const Header = () => {
       <li>
         <NavLink to="/all-trips">Trips</NavLink>
       </li>
-      {user && (
-        <li>
-          <NavLink to="/dashboard">Dashboard</NavLink>
-        </li>
-      )}
     </>
   );
 
@@ -95,7 +90,7 @@ const Header = () => {
                     <a className="justify-between">{user.email}</a>
                   </li>
                   <li>
-                    <a>Settings</a>
+                    <NavLink to="/dashboard">Dashboard</NavLink>
                   </li>
                   <li>
                     {" "}

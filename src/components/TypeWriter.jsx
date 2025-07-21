@@ -25,7 +25,7 @@ const TypeWriter = () => {
     return () => clearInterval(interval);
   }, [index]);
 
-  return <p className="text-lg font-medium italic">{text}|</p>;
+  return <p className="text-4xl font-medium italic">{text}|</p>;
 };
 
 export default TypeWriter;

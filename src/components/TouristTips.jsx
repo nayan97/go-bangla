@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const tips = [
   {
@@ -26,9 +27,18 @@ const TouristTips = () => {
     <section className="py-10 bg-base-100">
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-8">🧭 Tourist Tips</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {tips.map((tip, idx) => (
-            <div key={idx} className="card bg-base-200 shadow-md hover:shadow-lg transition">
+            <div
+              key={idx}
+              className="card bg-base-200 shadow-md hover:shadow-lg transition"
+            >
               <figure>
                 <img
                   src={tip.image}
@@ -37,12 +47,14 @@ const TouristTips = () => {
                 />
               </figure>
               <div className="card-body">
-                <h3 className="card-title text-xl font-semibold">{tip.title}</h3>
+                <h3 className="card-title text-xl font-semibold">
+                  {tip.title}
+                </h3>
                 <p className="text-sm text-gray-700">{tip.description}</p>
               </div>
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

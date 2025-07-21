@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { useNavigate } from "react-router";
+import { motion } from "framer-motion";
 
 const TourismGuideSection = () => {
   const [packages, setPackages] = useState([]);
@@ -12,8 +13,7 @@ const TourismGuideSection = () => {
     fetch("http://localhost:3000/api/packages/random")
       .then((res) => res.json())
       .then(setPackages);
-      // console.log(packages.price);
-      
+    // console.log(packages.price);
 
     fetch("http://localhost:3000/api/guides/random")
       .then((res) => res.json())
@@ -26,22 +26,25 @@ const TourismGuideSection = () => {
         Tourism & Travel Guide
       </h2>
       <Tabs>
-       <div className="text-center">
-         <TabList>
-          <Tab>Our Packages</Tab>
-          <Tab>Meet Our Tour Guides</Tab>
-        </TabList>
-       </div>
+        <div className="text-center">
+          <TabList>
+            <Tab>Our Packages</Tab>
+            <Tab>Meet Our Tour Guides</Tab>
+          </TabList>
+        </div>
 
         {/* Packages Tab */}
         <TabPanel>
           <div>
             <h1>tour Packages</h1>
           </div>
-          <div className="grid md:grid-cols-3 gap-6 mt-4">
+                <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          className="grid md:grid-cols-3 gap-6 mt-4">
             {packages.map((pkg) => (
-             
-              
               <div key={pkg._id} className="bg-white rounded-xl shadow-md p-4">
                 <img
                   src={pkg.images?.[0] || "/placeholder.jpg"}
@@ -49,7 +52,7 @@ const TourismGuideSection = () => {
                   className="rounded-md h-40 w-full object-cover"
                 />
                 <div className="mt-3">
-                    <p className="text-sm text-gray-500">{pkg.type}</p>
+                  <p className="text-sm text-gray-500">{pkg.type}</p>
                   <h3 className="text-lg font-bold">{pkg.title}</h3>
                   <p className="text-blue-600 font-semibold mt-1">
                     ${pkg.price}
@@ -63,7 +66,7 @@ const TourismGuideSection = () => {
                 </div>
               </div>
             ))}
-          </div>
+         </motion.div>
         </TabPanel>
 
         {/* Guides Tab */}
@@ -71,7 +74,13 @@ const TourismGuideSection = () => {
           <div>
             <h1>tour Guide</h1>
           </div>
-          <div className="grid md:grid-cols-3 gap-6 mt-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-3 gap-6 mt-4"
+          >
             {guides.map((guide) => (
               <div
                 key={guide._id}
@@ -96,7 +105,7 @@ const TourismGuideSection = () => {
                 </div>
               </div>
             ))}
-          </div>
+          </motion.div>
         </TabPanel>
       </Tabs>
     </div>

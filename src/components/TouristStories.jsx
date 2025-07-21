@@ -3,7 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { FacebookShareButton, FacebookIcon } from "react-share";
 import { useNavigate } from "react-router";
 import useAxiosSecure from "../hooks/useAxiosSecure";
-import useAuth from "../hooks/useAuth"; // <-- Assumes you have an auth context
+import useAuth from "../hooks/useAuth"; 
+import { motion } from "framer-motion";
 
 const TouristStories = () => {
   const axiosSecure = useAxiosSecure();
@@ -28,7 +29,7 @@ const TouristStories = () => {
   return (
     <div className="p-6 bg-white rounded-xl shadow mt-10">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">Tourist Stories</h2>
+        <h2 className=" text-end text-2xl font-bold">Tourist Stories</h2>
         <button
           className="btn btn-outline btn-sm"
           onClick={() => navigate("/community")}
@@ -40,7 +41,12 @@ const TouristStories = () => {
       {isLoading ? (
         <p>Loading stories...</p>
       ) : (
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <motion.div
+         initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+           className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {stories.map((story) => (
             <div
               key={story._id}
@@ -71,7 +77,7 @@ const TouristStories = () => {
               </div>
             </div>
           ))}
-        </div>
+         </motion.div>
       )}
     </div>
   );
