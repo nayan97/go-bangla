@@ -2,6 +2,7 @@ import { Menu } from "lucide-react";
 import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
 import EditProfileModal from "../../components/EditProfileModal";
+import { Link } from "react-router";
 
 const Navbar = ({ toggleSidebar }) => {
   const { user, logoutUser } = useAuth();
@@ -52,11 +53,8 @@ const Navbar = ({ toggleSidebar }) => {
                   </span>
                 </li>
                 <li>
-                  <button
-                    className="justify-between hover:bg-blue-950 text-left w-full"
-                    onClick={() => setIsModalOpen(true)}
-                  >
-                    Edit Profile
+                  <button className="justify-between hover:bg-blue-950" >
+                   <Link to="/">Home</Link> 
                   </button>
                 </li>
                 <li>

@@ -29,7 +29,7 @@ const Sidebar = ({ isOpen }) => {
           className="flex items-center gap-3 p-2 rounded hover:bg-base-300"
         >
           <LayoutDashboard className="w-5 h-5" />
-          {isOpen && <span>Home</span>}
+          {isOpen && <span>Dashboard</span>}
         </NavLink>
         <NavLink to="/dashboard/add-story" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
           <FileText className="w-5 h-5" />
@@ -50,7 +50,7 @@ const Sidebar = ({ isOpen }) => {
               className="flex items-center gap-3 p-2 rounded hover:bg-base-300"
             >
               <Truck className="w-5 h-5" />
-              {isOpen && <span>Make Admin</span>}
+              {isOpen && <span>Manage Users</span>}
             </NavLink>
             <NavLink
               to="/dashboard/add-tour"

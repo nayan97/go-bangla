@@ -1,6 +1,7 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import useAuth from "../../hooks/useAuth";
+import logo from "../../assets/logo/logo.jpeg"
 
 const Header = () => {
   const { user, logoutUser } = useAuth();
@@ -60,7 +61,7 @@ const Header = () => {
               {Navlinks}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <Link to="/"><img className="w-20 h-20 p-3" src={logo} alt="" /></Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{Navlinks}</ul>
