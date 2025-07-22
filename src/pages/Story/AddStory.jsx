@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
-import useAuth from '../../hooks/useAuth';
-import axios from 'axios';
-import Swal from 'sweetalert2';
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const AddStory = () => {
-         const axiosSecure = useAxiosSecure();
-     
-      const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+
+  const { user } = useAuth();
   const { register, handleSubmit, reset } = useForm();
   const [uploading, setUploading] = useState(false);
   const [imageUrls, setImageUrls] = useState([]);
@@ -42,6 +42,15 @@ const AddStory = () => {
     setImageUrls((prev) => [...prev, ...uploaded]);
     setUploading(false);
   };
+  // 🔹 Remove image from local state
+  const handleRemoveImage = async (urlToRemove) => {
+    try {
+      setImageUrls((prev) => prev.filter((url) => url !== urlToRemove));
+    } catch (error) {
+      console.error("Failed to remove image:", error);
+    }
+  };
+
   const onSubmit = async (data) => {
     const storyData = {
       ...data,
@@ -49,11 +58,11 @@ const AddStory = () => {
     };
 
     try {
-      await axiosSecure.post('/api/stories', storyData);
+      await axiosSecure.post("/api/stories", storyData);
       reset();
-      setImageUrls([])
+      setImageUrls([]);
       Swal.fire("Success!", "Story created successfully!", "success");
-      navigate('/dashboard/manage-stories');
+      navigate("/dashboard/manage-stories");
     } catch (err) {
       console.error("Failed to submit story", err);
     }
@@ -64,10 +73,10 @@ const AddStory = () => {
       <h2 className="text-2xl font-bold mb-6">Add a Story</h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-               <input
+        <input
           {...register("email", { required: true })}
           type="text"
-            value={user.email}
+          value={user.email}
           className="input input-bordered w-full bg-[#ddd] focus:outline-none"
           readOnly
         />
@@ -84,7 +93,30 @@ const AddStory = () => {
           className="textarea textarea-bordered w-full h-40"
         ></textarea>
 
-           {/* Multiple Image Upload */}
+        {/* Multiple Image Upload */}
+
+        <div>
+          <p className="font-medium mb-2">Current Images:</p>
+          <div className="grid grid-cols-3 gap-2">
+            {imageUrls.map((url, idx) => (
+              <div key={idx} className="relative">
+                <img
+                  src={url}
+                  alt={`uploaded-${idx}`}
+                  className="rounded shadow"
+                />
+                <button
+                  type="button"
+                  onClick={() => handleRemoveImage(url)}
+                  className="absolute top-1 right-1 btn btn-xs btn-error"
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+
         <input
           type="file"
           multiple
@@ -95,20 +127,12 @@ const AddStory = () => {
         {uploading && (
           <p className="text-blue-500 text-sm">Uploading images...</p>
         )}
-        {imageUrls.length > 0 && (
-          <div className="grid grid-cols-3 gap-2">
-            {imageUrls.map((url, idx) => (
-              <img
-                key={idx}
-                src={url}
-                alt={`Uploaded ${idx}`}
-                className="rounded shadow"
-              />
-            ))}
-          </div>
-        )}
 
-        <button className="btn btn-primary w-full" type="submit" disabled={uploading}>
+        <button
+          className="btn btn-primary w-full"
+          type="submit"
+          disabled={uploading}
+        >
           Submit Story
         </button>
       </form>

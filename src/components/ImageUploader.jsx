@@ -63,23 +63,6 @@ const ImageUploader = ({ imageUrls, setImageUrls, onImageRemove, canRemove = tru
 };
 
 export default ImageUploader;
-import ImageUploader from '../../components/ImageUploader';
 
-const handleRemoveImage = async (urlToRemove) => {
-  try {
-    await axiosSecure.patch(`/api/stories/${id}`, {
-      removeImage: urlToRemove,
-    });
-    setImageUrls((prev) => prev.filter((url) => url !== urlToRemove));
-  } catch (error) {
-    console.error("Failed to remove image:", error);
-  }
-};
 
-// Inside your JSX
-<ImageUploader
-  imageUrls={imageUrls}
-  setImageUrls={setImageUrls}
-  onImageRemove={handleRemoveImage}
-  canRemove={true}
-/>
+
