@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
 
 import { useNavigate } from "react-router";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxios from "../../hooks/useAxios";
 
 const Trips = () => {
-  const axiosSecure = useAxiosSecure();
+  const axiosSecure = useAxios();
   const navigate = useNavigate();
 
   const fetchPackages = async () => {

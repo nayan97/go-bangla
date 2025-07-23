@@ -1,12 +1,15 @@
-import React from "react";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { useQuery} from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import { Link, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import BookingSuccessCelebration from "../../../components/BookingSuccessCelebration";
+import { useState, useMemo } from "react";
 
 const MyBookings = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const bookingPerPage = 3;
+
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -28,6 +31,13 @@ const MyBookings = () => {
     queryFn: fetchPendingBookings,
     enabled: !!email, // don't fire until email exists
   });
+
+  // ✅ Calculate pagination info
+  const totalPages = Math.ceil(bookings.length / bookingPerPage);
+  const startIdx = (currentPage - 1) * bookingPerPage;
+  const currentData = useMemo(() => {
+    return bookings.slice(startIdx, startIdx + bookingPerPage);
+  }, [bookings, startIdx]);
 
   if (isLoading) return <p>Loading…</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -86,7 +96,7 @@ const MyBookings = () => {
           </tr>
         </thead>
         <tbody>
-          {bookings.map((booking, index) => (
+          {currentData.map((booking, index) => (
             <tr key={booking._id}>
               <td>{index + 1}</td>
               <td>{booking.packageName || "N/A"}</td>
@@ -108,16 +118,53 @@ const MyBookings = () => {
                 <button
                   onClick={() => handleDelete(booking._id)}
                   className="btn btn-error btn-sm mx-1"
-                   disabled={booking.status !== "pending"}
-                  
+                  disabled={booking.status !== "pending"}
                 >
-                  Cancel 
+                  Cancel
                 </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      {/* ✅ Pagination */}
+      <div className="flex justify-between items-center mt-4">
+        <span className="text-sm text-gray-600">
+          Showing {startIdx + 1} -{" "}
+          {Math.min(startIdx + bookingPerPage, bookings.length)} of{" "}
+          {bookings.length}
+        </span>
+
+        <div className="join">
+          <button
+            className="join-item btn btn-sm"
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage((prev) => prev - 1)}
+          >
+            &lt;
+          </button>
+
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
+              key={i}
+              className={`join-item btn btn-sm ${
+                currentPage === i + 1 ? "btn-active" : ""
+              }`}
+              onClick={() => setCurrentPage(i + 1)}
+            >
+              {i + 1}
+            </button>
+          ))}
+
+          <button
+            className="join-item btn btn-sm"
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage((prev) => prev + 1)}
+          >
+            &gt;
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

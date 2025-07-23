@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { useMemo } from 'react';
 
 
 
 
 const MakeAdmin = () => {
+ const [currentPage, setCurrentPage] = useState(1);
+  const userPerPage = 10;
+
   const [searchText, setSearchText] = useState('');
   const [debouncedText, setDebouncedText] = useState('');
   const queryClient = useQueryClient();
@@ -31,6 +35,13 @@ const MakeAdmin = () => {
     queryFn: () => fetchUsers(debouncedText),
     enabled: !!debouncedText,
   });
+
+    // ✅ Calculate pagination info
+    const totalPages = Math.ceil(users.length / userPerPage);
+    const startIdx = (currentPage - 1) * userPerPage;
+    const currentData = useMemo(() => {
+      return users.slice(startIdx, startIdx + userPerPage);
+    }, [users, startIdx]);
 
   // Mutation: make admin
   const makeAdminMutation = useMutation({
@@ -104,7 +115,7 @@ const MakeAdmin = () => {
               </tr>
             </thead>
             <tbody>
-              {users.map((user) => (
+              {currentData.map((user) => (
                 <tr key={user._id}>
                   <td className="border px-4 py-2">{user.email}</td>
                   <td className="border px-4 py-2">{new Date(user.created_at).toLocaleString()}</td>
@@ -135,6 +146,45 @@ const MakeAdmin = () => {
       ) : debouncedText ? (
         <p className="text-center mt-4 text-gray-500">No matching users found.</p>
       ) : null}
+
+        {/* ✅ Pagination */}
+      <div className="flex justify-between items-center mt-4">
+        <span className="text-sm text-gray-600">
+          Showing {startIdx + 1} -{" "}
+          {Math.min(startIdx + userPerPage, users.length)} of{" "}
+          {users.length}
+        </span>
+
+        <div className="join">
+          <button
+            className="join-item btn btn-sm"
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage((prev) => prev - 1)}
+          >
+            &lt;
+          </button>
+
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
+              key={i}
+              className={`join-item btn btn-sm ${
+                currentPage === i + 1 ? "btn-active" : ""
+              }`}
+              onClick={() => setCurrentPage(i + 1)}
+            >
+              {i + 1}
+            </button>
+          ))}
+
+          <button
+            className="join-item btn btn-sm"
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage((prev) => prev + 1)}
+          >
+            &gt;
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
