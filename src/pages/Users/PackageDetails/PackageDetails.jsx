@@ -8,15 +8,15 @@ import AboutTour from './AboutTour';
 import TourPlan from './TourPlan';
 import TourGuideList from './TourGuideList';
 import BookingForm from './BookingForm';
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import useAxios from '../../../hooks/useAxios';
 
 
 
 
 const PackageDetails = () => {
-  const axiosdata = useAxiosSecure();
+  const axiosdata = useAxios();
   const fetchPackageDetails = async (id) => {
-  const res = await axiosdata.get(`/api/packages/${id}`);
+  const res = await axiosdata.get(`/api/packagesby/${id}`);
   // console.log(res);
   return res.data;
   

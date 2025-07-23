@@ -2,12 +2,12 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { FacebookShareButton, FacebookIcon } from "react-share";
 import { useNavigate } from "react-router";
-import useAxiosSecure from "../hooks/useAxiosSecure";
 import useAuth from "../hooks/useAuth"; 
 import { motion } from "framer-motion";
+import useAxios from "../hooks/useAxios";
 
 const TouristStories = () => {
-  const axiosSecure = useAxiosSecure();
+  const axiosSecure = useAxios();
   const navigate = useNavigate();
   const { user } = useAuth(); 
 

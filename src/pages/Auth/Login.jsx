@@ -4,6 +4,7 @@ import Social from "../../pages/Auth/Social";
 import { useLocation, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { loginUser, resetPassword } = useAuth();
@@ -24,10 +25,12 @@ const Login = () => {
     loginUser(data.email, data.password)
       .then((result) => {
         console.log(result.user);
+        toast.success("Loged In successfully!");
         navigate(from);
       })
       .catch((error) => {
         console.error(error);
+        toast.error("Wrong email or password");
       });
   };
 
@@ -52,55 +55,60 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <fieldset className="fieldset">
-          <label className="label">Email</label>
-          <input
-            type="email"
-            {...register("email")}
-            className="input w-full"
-            placeholder="Email"
-          />
-          <label className="label">Password</label>
-          <input
-            type="password"
-            {...register("password", {
-              required: true,
-              minLength: 6,
-            })}
-            className="input w-full"
-            placeholder="Password"
-          />
-          {errors.password?.type === "required" && (
-            <p role="alert" className="text-red-600">
-              password is required
-            </p>
-          )}
-          {errors.password?.type === "minLength" && (
-            <p role="alert" className="text-red-600">
-              password is must be 6 character.
-            </p>
-          )}
-          <div>
-            <button
-              type="button"
-              onClick={handleForgotPassword}
-              className="link link-hover text-blue-600"
-            >
-              Forgot password?
-            </button>
-          </div>
-          <button className="btn btn-neutral mt-4">Login</button>
-          <p className="text-center mt-4">
-            Don’t have an account?{" "}
-            <a href="/register" className="text-blue-600 hover:underline">
-              Register here
-            </a>
-          </p>
-        </fieldset>
-      </form>
+    <div className="flex justify-center py-10 px-4">
+      <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+        <div className="card-body">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <fieldset className="fieldset">
+              <label className="label">Email</label>
+              <input
+                type="email"
+                {...register("email")}
+                className="input w-full"
+                placeholder="Email"
+              />
+              <label className="label">Password</label>
+              <input
+                type="password"
+                {...register("password", {
+                  required: true,
+                  minLength: 6,
+                })}
+                className="input w-full"
+                placeholder="Password"
+              />
+              {errors.password?.type === "required" && (
+                <p role="alert" className="text-red-600">
+                  password is required
+                </p>
+              )}
+              {errors.password?.type === "minLength" && (
+                <p role="alert" className="text-red-600">
+                  password is must be 6 character.
+                </p>
+              )}
+              <div>
+                <button
+                  type="button"
+                  onClick={handleForgotPassword}
+                  className="link link-hover text-blue-600"
+                >
+                  Forgot password?
+                </button>
+              </div>
+              <button className="btn btn-neutral mt-4">Login</button>
+              <p className="text-center mt-4">
+                Don’t have an account?{" "}
+                <a href="/register" className="text-blue-600 hover:underline">
+                  Register here
+                </a>
+              </p>
+            </fieldset>
+          </form>
       <Social></Social>
+        </div>
+      </div>
+
     </div>
   );
 };

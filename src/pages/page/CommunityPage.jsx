@@ -10,12 +10,13 @@ import {
   TwitterIcon,
   WhatsappIcon,
 } from "react-share";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router";
+import useAxios from "../../hooks/useAxios";
 
 const CommunityPage = () => {
-  const axiosSecure = useAxiosSecure();
+  const axiosSecure = useAxios();
   const { user } = useAuth();
   const navigate = useNavigate();
 

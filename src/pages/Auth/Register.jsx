@@ -2,145 +2,139 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import useAxios from "../../hooks/useAxios";
-
 import Social from "../../pages/Auth/Social";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useAuth();
   const axiosUserSecure = useAxios();
   const location = useLocation();
   const navigate = useNavigate();
-  // console.log(location);
   const from = location.state?.from || "/";
 
   const {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm();
 
   const [profilePic, setProfilePic] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const onSubmit = (data) => {
-    // console.log(data);
+  const onSubmit = async (data) => {
+    setLoading(true);
+    try {
+      const result = await createUser(data.email, data.password);
 
-    createUser(data.email, data.password)
-      .then(async (result) => {
-        console.log(result.user);
+      const userInfo = {
+        name: data.name,
+        email: data.email,
+        photoURL: profilePic,
+        role: "user",
+        created_at: new Date().toISOString(),
+        last_signin_at: new Date().toISOString(),
+      };
 
-        const userInfo = {
-          email: data.email,
-          role: "user",
-          created_at: new Date().toISOString(),
-          last_signin_at: new Date().toISOString(),
-        };
+      await axiosUserSecure.post("/api/users", userInfo);
+      await updateUserProfile(data.name, profilePic);
 
-        try {
-          const userRes = await axiosUserSecure.post("/api/users", userInfo);
-          console.log(userRes.data);
-         
-        } catch (err) {
-          console.error(
-            "Error saving user to DB:",
-            err.response?.data || err.message
-          );
-          // Optionally, notify user or exit early here
-          return;
-        }
-
-        // ✅ Update profile only if DB insertion succeeds
-        updateUserProfile(data.name, profilePic)
-          .then(() => {
-            console.log("Profile updated");
-             navigate(from);
-          })
-          .catch((error) => {
-            console.error("Error updating profile:", error);
-          });
-      })
-      .catch((error) => {
-        console.error("Error creating user:", error);
-      });
+      toast.success("Account created successfully!");
+      reset();
+      navigate(from, { replace: true });
+    } catch (err) {
+      console.error("Registration error:", err.message);
+       toast.error(`${err.message}. Try again.`);
+    } finally {
+      setLoading(false);
+    }
   };
+
   const handlePhotoUpload = async (e) => {
     const img = e.target.files[0];
     const formData = new FormData();
     formData.append("image", img);
 
-    const imgUploadUrl = `https://api.imgbb.com/1/upload?key=${
-      import.meta.env.VITE_image_upload_key
-    }`;
-    const res = await axios.post(imgUploadUrl, formData);
-    console.log(res.data);
-
-    setProfilePic(res.data.data.display_url);
+    try {
+      const imgUploadUrl = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_key}`;
+      const res = await axios.post(imgUploadUrl, formData);
+      setProfilePic(res.data.data.display_url);
+    } catch (err) {
+      console.error("Image upload failed:", err);
+       toast.error("Failed to upload image.");
+    }
   };
 
   return (
-    <div>
+    <div className="flex justify-center py-10 px-4">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
         <div className="card-body">
-          <h1 className="text-5xl font-bold">Register Here!</h1>
+          <h1 className="text-3xl font-bold text-center mb-4">Register</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <fieldset className="fieldset">
+            <fieldset className="space-y-2">
+              {/* Name */}
               <label className="label">Name</label>
               <input
                 type="text"
-                {...register("name", {
-                  required: false,
-                })}
-                name="name"
-                className="input w-full"
-                placeholder="Name"
+                {...register("name", { required: "Name is required" })}
+                className="input input-bordered w-full"
+                placeholder="Your Name"
               />
+              {errors.name && <p className="text-red-500">{errors.name.message}</p>}
 
-              <label className="label">Photo URL</label>
+              {/* Profile Photo */}
+              <label className="label">Profile Photo</label>
               <input
                 type="file"
                 onChange={handlePhotoUpload}
-                name="photoURL"
                 className="file-input file-input-bordered w-full"
               />
 
+              {/* Email */}
               <label className="label">Email</label>
               <input
                 type="email"
                 {...register("email", {
-                  required: true,
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                    message: "Invalid email address",
+                  },
                 })}
-                className="input w-full"
+                className="input input-bordered w-full"
                 placeholder="Email"
               />
-              {errors.email?.type === "required" && (
-                <p role="alert" className="text-red-600">
-                  email is required
-                </p>
-              )}
+              {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+
+              {/* Password */}
               <label className="label">Password</label>
               <input
                 type="password"
                 {...register("password", {
-                  required: true,
-                  minLength: 6,
+                  required: "Password is required",
+                  minLength: { value: 6, message: "Minimum 6 characters required" },
+                  pattern: {
+                    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).+$/,
+                    message:
+                      "Password must include uppercase, lowercase, number, and special character",
+                  },
                 })}
-                className="input w-full"
+                className="input input-bordered w-full"
                 placeholder="Password"
               />
-              {errors.password?.type === "required" && (
-                <p role="alert" className="text-red-600">
-                  password is required
-                </p>
-              )}
-              {errors.password?.type === "minLength" && (
-                <p role="alert" className="text-red-600">
-                  password is must be 6 character.
-                </p>
-              )}
+              {errors.password && <p className="text-red-500">{errors.password.message}</p>}
 
-              <button className="btn btn-neutral mt-4">Register</button>
-              <p className="text-center mt-4">
+              <button
+                type="submit"
+                className="btn btn-neutral w-full mt-4"
+                disabled={loading}
+              >
+                {loading ? "Registering..." : "Register"}
+              </button>
+
+              <p className="text-center mt-4 text-sm">
                 Already have an account?{" "}
                 <a href="/login" className="text-blue-600 hover:underline">
                   Login here
@@ -148,7 +142,7 @@ const Register = () => {
               </p>
             </fieldset>
           </form>
-          <Social></Social>
+          <Social />
         </div>
       </div>
     </div>

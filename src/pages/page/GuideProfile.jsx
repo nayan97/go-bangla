@@ -21,7 +21,7 @@ const GuideProfile = () => {
   const { data: stories = [], isLoading: loadingStories } = useQuery({
     queryKey: ["stories", email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/stories/byemail?email=${email}`);
+      const res = await axiosSecure.get(`/api/stories?email=${email}`);
       return res.data;
     },
     enabled: !!email,
@@ -82,7 +82,7 @@ const GuideProfile = () => {
                    </p>
                    {story.imageUrls && (
                      <img
-                       src={story.imageUrls[1]}
+                       src={story?.imageUrls[1]}
                        alt="Story"
                        className="mt-4 rounded-lg max-h-96 object-cover w-full"
                      />
