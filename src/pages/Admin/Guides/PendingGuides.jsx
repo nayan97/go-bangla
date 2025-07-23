@@ -6,7 +6,7 @@ import { useState, useMemo } from "react";
 
 const PendingGuides = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const guidePerPage = 10;
+  const guidePerPage = 3;
 
   const axiosdata = useAxiosSecure();
   const queryClient = useQueryClient();

@@ -6,7 +6,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const JoinAsGuide = () => {
   const { user } = useAuth();
-   const axiosSecure = useAxiosSecure();
+  const axiosSecure = useAxiosSecure();
   const {
     register,
     handleSubmit,
@@ -36,11 +36,11 @@ const JoinAsGuide = () => {
 
     console.log("Guide Application Submitted:", guideApplicationData);
     Swal.fire({
-    title: "Confirm Submission",
-    text: "Are you sure you want to apply as a rider?",
-    icon: "question",
-    showCancelButton: true,
-    confirmButtonText: "Yes, Submit",
+      title: "Confirm Submission",
+      text: "Are you sure you want to apply as a rider?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes, Submit",
     }).then((result) => {
       if (result.isConfirmed) {
         // POST the rider data to the backend
@@ -88,6 +88,32 @@ const JoinAsGuide = () => {
           )}
         </div>
 
+        <div className="mt-4">
+          <label className="label font-medium">Experience</label>
+          <input
+            type="text"
+            placeholder="Ex: 3 years"
+            {...register("experience", { required: "Experience is required" })}
+            className="input input-bordered w-full"
+          />
+          {errors.experience && (
+            <p className="text-red-500 mt-1">{errors.experience.message}</p>
+          )}
+        </div>
+
+        <div className="mt-4">
+          <label className="label font-medium">Location</label>
+          <input
+            type="text"
+            placeholder="Ex: Dhaka, Bangladesh"
+            {...register("location", { required: "Location is required" })}
+            className="input input-bordered w-full"
+          />
+          {errors.location && (
+            <p className="text-red-500 mt-1">{errors.location.message}</p>
+          )}
+        </div>
+
         {/* Reason */}
         <div>
           <label className="label font-medium">
@@ -127,9 +153,13 @@ const JoinAsGuide = () => {
         </div>
 
         <div className="text-center pt-2">
-         <button type="submit" className="btn bg-[#CAEB66] w-full" disabled={loading}>
-          {loading ? "Submitting…" : "Apply Now"}
-        </button>
+          <button
+            type="submit"
+            className="btn bg-[#CAEB66] w-full"
+            disabled={loading}
+          >
+            {loading ? "Submitting…" : "Apply Now"}
+          </button>
         </div>
       </form>
     </div>

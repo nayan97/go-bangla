@@ -27,11 +27,12 @@ import EditStory from "../pages/Story/EditStory";
 import CommunityPage from "../pages/page/CommunityPage";
 import AboutUs from "../pages/page/AboutUs";
 import Trips from "../pages/page/Trips";
+import GuideProfile from "../pages/page/GuideProfile";
 
 export const router = createBrowserRouter([
   {
     Component: Layout,
-        hydrateFallbackElement: <Spinner></Spinner>,
+    hydrateFallbackElement: <Spinner></Spinner>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
@@ -54,15 +55,20 @@ export const router = createBrowserRouter([
         path: "community",
         Component: CommunityPage,
       },
-        {
+      {
+        path: "/guide-profile/:email",
+        Component: GuideProfile,
+      },
+
+      {
         path: "about-us",
         Component: AboutUs,
       },
-         {
+      {
         path: "all-trips",
         Component: Trips,
       },
-        {
+      {
         path: "login",
         Component: Login,
       },

@@ -97,7 +97,7 @@ const TourismGuideSection = () => {
                     {guide.experience} years experience
                   </p>
                   <button
-                    onClick={() => navigate(`/guides/${guide._id}`)}
+                    onClick={() => navigate(`/guide-profile/${guide.email}`)}
                     className="mt-3 btn btn-outline btn-sm"
                   >
                     View Details
