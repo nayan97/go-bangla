@@ -17,7 +17,9 @@ const PackageDetails = () => {
   const axiosdata = useAxiosSecure();
   const fetchPackageDetails = async (id) => {
   const res = await axiosdata.get(`/api/packages/${id}`);
+  // console.log(res);
   return res.data;
+  
 };
   const { id } = useParams();
 
@@ -34,7 +36,7 @@ const PackageDetails = () => {
     <div className="max-w-6xl mx-auto px-4 py-6 space-y-12">
       <GallerySection images={packageData.images || []} />
       <AboutTour about={packageData.about} />
-      <TourPlan plan={packageData.plan} />
+      <TourPlan faqs={packageData.faqs} />
       <TourGuideList guideIds={packageData.guideIds} />
       <BookingForm packageData={packageData} guides={packageData.guides || []} />
     </div>
