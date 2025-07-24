@@ -3,14 +3,13 @@ import { NavLink } from "react-router";
 import {
   LayoutDashboard,
   FileText,
-  Tag,
-  Truck,
   ShoppingBag,
-  Percent,
-  Users,
-  File,
-  PackageCheck,
   Boxes,
+  ShoppingCart,
+  Briefcase,
+  UserCog,
+  PackagePlus,
+  ShieldCheck,
 } from "lucide-react";
 import useUserRole from "../../hooks/useUserRole";
 
@@ -20,51 +19,65 @@ const Sidebar = ({ isOpen }) => {
   return (
     <aside
       className={`bg-[#ddd]  h-full p-4 transition-all duration-300 ${
-        isOpen ? "w-64" : "w-20"
+        isOpen ? "w-40 lg:w-64" : "hidden"
       } overflow-hidden`}
     >
       <div className="space-y-2">
         <NavLink
           to="/dashboard"
-          className="flex items-center gap-3 p-2 rounded hover:bg-base-300"
+          className="p-2 rounded hover:bg-base-300"
         >
-          <LayoutDashboard className="w-5 h-5" />
-          {isOpen && <span>Dashboard</span>}
+          {isOpen && (
+            <span className="flex items-center gap-3">
+              {" "}
+              <LayoutDashboard className="w-5 h-5" />
+              Dashboard
+            </span>
+          )}
         </NavLink>
-        <NavLink to="/dashboard/add-story" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
-          <FileText className="w-5 h-5" />
-          {isOpen && <span>Add Story</span>}
-        </NavLink>
-        
-        
-        <NavLink to="/dashboard/manage-stories" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
-          <Boxes className="w-5 h-5" />
-          {isOpen && <span>Manage Story</span>}
+        <NavLink
+          to="/dashboard/add-story"
+          className="p-2 rounded hover:bg-base-300"
+        >
+          {isOpen && (
+            <span className="flex items-center gap-3">
+              {" "}
+              <FileText className="w-5 h-5" />
+              Add Story
+            </span>
+          )}
         </NavLink>
 
+        <NavLink
+          to="/dashboard/manage-stories"
+          className="p-2 rounded hover:bg-base-300"
+        >
+          
+          {isOpen && <span className="flex items-center gap-3"> <Boxes className="w-5 h-5" />Manage Story</span>}
+        </NavLink>
 
         {!isLoading && role === "admin" && (
           <>
             <NavLink
               to="/dashboard/make-admin"
-              className="flex items-center gap-3 p-2 rounded hover:bg-base-300"
+              className="p-2 rounded hover:bg-base-300"
             >
-              <Truck className="w-5 h-5" />
-              {isOpen && <span>Manage Users</span>}
+           
+              {isOpen && <span className="flex items-center gap-3"> <UserCog className="w-5 h-5" />Manage Users</span>}
             </NavLink>
             <NavLink
               to="/dashboard/add-tour"
-              className="flex items-center gap-3 p-2 rounded hover:bg-base-300"
+              className="p-2 rounded hover:bg-base-300"
             >
-              <PackageCheck className="w-5 h-5" />
-              {isOpen && <span>Add Tour Plan</span>}
+            
+              {isOpen && <span className="flex items-center gap-3"> <PackagePlus className="w-5 h-5" />Add Tour Plan</span>}
             </NavLink>
             <NavLink
               to="/dashboard/pending_guides"
-              className="flex items-center gap-3 p-2 rounded hover:bg-base-300"
+              className="rounded hover:bg-base-300"
             >
-              <Percent className="w-5 h-5" />
-              {isOpen && <span>Manage Candidates</span>}
+            
+              {isOpen && <span className="flex items-center gap-3"> <ShieldCheck className="w-5 h-5" />Manage Candidates</span>}
             </NavLink>
           </>
         )}
@@ -72,18 +85,18 @@ const Sidebar = ({ isOpen }) => {
           <>
             <NavLink
               to="/dashboard/join_as_guide"
-              className="flex items-center gap-3 p-2 rounded hover:bg-base-300"
+              className="p-2 rounded hover:bg-base-300"
             >
-              <ShoppingBag className="w-5 h-5" />
-              {isOpen && <span>JoinAsGuide</span>}
+          
+              {isOpen && <span className="flex items-center gap-3">  <Briefcase className="w-5 h-5" />JoinAsGuide</span>}
             </NavLink>
 
             <NavLink
               to="/dashboard/my-bookings"
-              className="flex items-center gap-3 p-2 rounded hover:bg-base-300"
+              className="rounded hover:bg-base-300"
             >
-              <ShoppingBag className="w-5 h-5" />
-              {isOpen && <span>My Bookings</span>}
+             
+              {isOpen && <span className="flex items-center gap-3">   <ShoppingCart className="w-5 h-5" />My Bookings</span>}
             </NavLink>
           </>
         )}
@@ -92,26 +105,13 @@ const Sidebar = ({ isOpen }) => {
           <>
             <NavLink
               to="/dashboard/assigned-tours"
-              className="flex items-center gap-3 p-2 rounded hover:bg-base-300"
+              className="p-2 rounded hover:bg-base-300"
             >
-              <ShoppingBag className="w-5 h-5" />
-              {isOpen && <span>My Assigned Tours</span>}
+             
+              {isOpen && <span className="flex items-center gap-3">  <ShoppingBag className="w-5 h-5" />My Assigned Tours</span>}
             </NavLink>
-
           </>
         )}
-
-        {/* 
-
-        <NavLink to="/users" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
-          <Users className="w-5 h-5" />
-          {isOpen && <span>Users</span>}
-        </NavLink>
-
-        <NavLink to="/pages" className="flex items-center gap-3 p-2 rounded hover:bg-base-300">
-          <File className="w-5 h-5" />
-          {isOpen && <span>Pages</span>}
-        </NavLink> */}
       </div>
     </aside>
   );
