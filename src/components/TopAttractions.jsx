@@ -30,40 +30,43 @@ const attractions = [
 ];
 
 const TopAttractions = () => {
-  return (
-    <section className="py-10 bg-base-100">
-      <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-8">
-          Top Attractions in Bangladesh
-        </h2>
-         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
-          {attractions.map((attraction, index) => (
-            <div key={index} className="card bg-base-200 shadow-xl">
-              <figure>
-                <img
-                  src={attraction.image}
-                  alt={attraction.name}
-                  className="h-48 w-full object-cover"
-                />
-              </figure>
-              <div className="card-body">
-                <h3 className="card-title text-xl font-semibold">
-                  {attraction.name}
-                </h3>
-                <p>{attraction.description}</p>
-              </div>
+return (
+  <section className="py-10 bg-base-100">
+    <div className="max-w-7xl mx-auto px-4">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8">
+        Top Attractions in Bangladesh
+      </h2>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+      >
+        {attractions.map((attraction, index) => (
+          <div key={index} className="card bg-base-200 shadow-xl">
+            <figure>
+              <img
+                src={attraction.image}
+                alt={attraction.name}
+                className="h-64 md:h-48 w-full object-cover"
+              />
+            </figure>
+            <div className="card-body">
+              <h3 className="card-title text-lg sm:text-xl md:text-2xl font-semibold">
+                {attraction.name}
+              </h3>
+              <p className="text-base sm:text-lg md:text-md lg:text-sm xl:text-base 2xl:text-lg line-clamp-3">
+                {attraction.description}
+              </p>
             </div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  );
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  </section>
+);
+
 };
 
 export default TopAttractions;

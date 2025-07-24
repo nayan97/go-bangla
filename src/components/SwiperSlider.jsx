@@ -32,7 +32,7 @@ const Slider = () => {
         {/* Slide 1 */}
         <SwiperSlide>
           <div
-            className="h-64 md:h-96 bg-cover bg-center relative"
+            className="h-96 bg-cover bg-center relative"
             style={{ backgroundImage: `url(${backgroundImage1})` }}
           >
             {/* Overlay */}

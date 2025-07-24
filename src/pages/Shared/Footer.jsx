@@ -35,7 +35,7 @@ const Footer = () => {
   );
   return (
     <div className="bg-neutral">
-      <div className="w-7xl mx-auto">
+      <div className="max-w-4xl lg:max-w-7xl mx-auto">
         <footer className="footer sm:footer-horizontal text-neutral-content grid-rows-1 p-10">
           <nav>
             <h6 className="footer-title">Company</h6>
