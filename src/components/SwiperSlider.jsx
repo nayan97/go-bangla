@@ -7,11 +7,11 @@ import "swiper/css/navigation";
 
 const Slider = () => {
   const backgroundImage1 =
-    "https://i.ibb.co/5HLzckj/istockphoto-1399812399-2048x2048.jpg";
+    "https://i.ibb.co/RGbXychH/Marine-drive-road.jpg";
   const backgroundImage2 =
-    "https://i.ibb.co/R4vyr5x8/photo-1601972602288-3be527b4f18a.jpg";
+    "https://i.ibb.co/SwMGhcbZ/da284bd31d7a39ed2874320277d2d9f714f3db95f12f429d.jpg";
   const backgroundImage3 =
-    "https://i.ibb.co/FbzV86Cy/premium-photo-1681487729805-91f220c7da25.jpg";
+    "https://i.ibb.co/KcMNz7YQ/sun-banner-3.webp";
 
   return (
     <div className="w-full max-w-7xl mx-auto mt-8 rounded-2xl overflow-hidden shadow-lg">
@@ -40,9 +40,9 @@ const Slider = () => {
 
             {/* Content */}
             <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-6 z-10">
-              <h2 className="text-3xl font-bold mb-2">🔥 Big Launch Offer!</h2>
+              <h2 className="text-3xl font-bold mb-2">🌍 Explore the World, One Journey at a Time</h2>
               <p className="text-lg">
-                Get 50% off on our newly released productivity app.
+                Discover unforgettable adventures with us — your passport to wonder.
               </p>
             </div>
           </div>
@@ -52,14 +52,14 @@ const Slider = () => {
         <SwiperSlide>
           <div
             className="h-64 md:h-96 bg-cover bg-center relative"
-            style={{ backgroundImage: `url(${backgroundImage3})` }}
+            style={{ backgroundImage: `url(${backgroundImage2})` }}
           >
             {/* Overlay */}
             <div className="absolute inset-0 bg-gray-900 opacity-10 z-0"></div>
             <div className="absolute inset-0  flex flex-col items-center justify-center text-white  text-center p-6">
-              <h2 className="text-3xl font-bold mb-2">📱 App of the Month</h2>
+              <h2 className="text-3xl font-bold mb-2">🏝️ Turn Your Travel Dreams into Reality</h2>
               <p className="text-lg">
-                Check out our top-rated fitness tracking app now!
+                Custom tours, local guides, and lifelong memories — all in one place.
               </p>
             </div>
           </div>
@@ -69,14 +69,14 @@ const Slider = () => {
         <SwiperSlide>
           <div
             className="h-64 md:h-96 bg-cover bg-black bg-opacity-10 bg-center relative"
-            style={{ backgroundImage: `url(${backgroundImage2})` }}
+            style={{ backgroundImage: `url(${backgroundImage3})` }}
           >
             {/* Overlay */}
             <div className="absolute inset-0 bg-gray-900 opacity-10 z-0"></div>
             <div className="absolute inset-0 flex flex-col items-center justify-center text-white  text-center p-6">
-              <h2 className="text-3xl font-bold mb-2">🚀 New Feature Alert</h2>
+              <h2 className="text-3xl font-bold mb-2">✈️ Pack Your Bags, The World Awaits</h2>
               <p className="text-lg">
-                Our finance app now supports UPI and more!
+               From hidden gems to iconic landmarks — we take you there.
               </p>
             </div>
           </div>

@@ -5,7 +5,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 const AboutUs = () => {
   return (
     <motion.div
-      className="max-w-6xl mx-auto py-6"
+      className="max-w-3xl mx-auto py-6 px-3"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
