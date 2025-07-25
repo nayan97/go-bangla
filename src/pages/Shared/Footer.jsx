@@ -10,7 +10,7 @@ const Footer = () => {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            isActive ? "text-[#0EA106] font-bold m-2" : "m-2"
+            isActive ? "text-[#0EA106] font-bold my-2" : "my-2"
           }
         >
           Home
@@ -18,17 +18,17 @@ const Footer = () => {
       </li>
       <li>
         <NavLink to="/community"     className={({ isActive }) =>
-            isActive ? "text-[#0EA106] font-bold m-2" : "m-2"
+            isActive ? "text-[#0EA106] font-bold my-2" : "my-2"
           }>Community</NavLink>
       </li>
       <li>
         <NavLink to="/about-us"     className={({ isActive }) =>
-            isActive ? "text-[#0EA106] font-bold m-2" : "m-2"
+            isActive ? "text-[#0EA106] font-bold my-2" : "my-2"
           }>About Us</NavLink>
       </li>
       <li>
         <NavLink to="/all-trips"     className={({ isActive }) =>
-            isActive ? "text-[#0EA106] font-bold m-2" : "m-2"
+            isActive ? "text-[#0EA106] font-bold my-2" : "my-2"
           }>Trips</NavLink>
       </li>
     </>
