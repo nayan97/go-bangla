@@ -70,7 +70,7 @@ const CommunityPage = () => {
             <p className="text-gray-800 whitespace-pre-line py-12">
               {story.content}
             </p>
-            {story.imageUrls && (
+            {story.imageUrls && story.imageUrls[1] && (
               <img
                 src={story.imageUrls[1]}
                 alt="Story"

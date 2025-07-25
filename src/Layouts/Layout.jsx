@@ -9,9 +9,8 @@ const Layout = () => {
       <div className="max-w-4xl lg:max-w-7xl mx-auto">
         <Header></Header>
         <Outlet></Outlet>
-       
       </div>
-          <div className="bg-black">
+      <div className="bg-black">
         <div className="max-w-4xl lg:max-w-7xl mx-auto">
           <Footer></Footer>
         </div>
