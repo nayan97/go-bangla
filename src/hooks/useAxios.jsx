@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const axiosUserSecure = axios.create({
-    baseURL: `http://localhost:3000/`
+    baseURL: `https://gobangla-server.vercel.app/`
 })
 
 const useAxios = () => {

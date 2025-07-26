@@ -3,7 +3,7 @@ import useAuth from './useAuth';
 
 
 const axiosSecure = axios.create({
-    baseURL: `http://localhost:3000/`
+    baseURL: `https://gobangla-server.vercel.app/`
 })
 const useAxiosSecure = () => {
 

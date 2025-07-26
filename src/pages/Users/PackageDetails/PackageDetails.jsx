@@ -9,6 +9,7 @@ import TourPlan from './TourPlan';
 import TourGuideList from './TourGuideList';
 import BookingForm from './BookingForm';
 import useAxios from '../../../hooks/useAxios';
+import Spinner from '../../../components/Spinner'
 
 
 
@@ -29,7 +30,7 @@ const PackageDetails = () => {
     enabled: !!id,
   });
 
-  if (isLoading) return <p className="text-center">Loading package details...</p>;
+  if (isLoading) return <Spinner></Spinner>;
   if (error) return <p className="text-center text-red-500">Error loading data</p>;
 
   return (

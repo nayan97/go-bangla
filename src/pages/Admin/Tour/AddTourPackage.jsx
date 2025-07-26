@@ -80,7 +80,7 @@ const AddTourPackage = () => {
       about: data.about,
       type: data.type,
       price: data.price,
-      guideIds: Array.isArray(data.guideIds) ? data.guideIds : [data.guideIds],
+      guideIds: Array.isArray(data.guideIds) ? data.guideIds : [],
       images: imageUrls.length ? imageUrls : [],
       faqs: faqList.length ? faqList : [],
     };
@@ -88,6 +88,7 @@ const AddTourPackage = () => {
     try {
       const res = await axiosdata.post("/api/packages", payload);
       Swal.fire("Success!", "Tour package added successfully.", "success");
+      
       reset();
       setImageUrls([]);
       setFaqList([]);

@@ -98,6 +98,7 @@ const handleBooking = async () => {
         />
 
         <select
+        
           className="select w-full"
           value={selectedGuide}
           onChange={(e) => setSelectedGuide(e.target.value)}

@@ -5,7 +5,9 @@ const TourGuideList = ({ guideIds }) => {
     <div>
       <h2 className="text-2xl font-bold mb-4">Tours Guide</h2>
       <ul className="space-y-4">
-            {guideIds}
+            {guideIds.map((guide, index ) =>(
+              <li></li>
+            ))}
       </ul>
     </div>
   );

@@ -9,9 +9,9 @@ const GallerySection = ({ images = [] }) => {
           GALLERY
         </h2>
 
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
           {images && images[0] && (
-            <div className="col-span-1">
+            <div className="shadow-xl bg-white col-span-1">
               <img
                 src={images[0]}
                 alt="Story"
@@ -20,7 +20,7 @@ const GallerySection = ({ images = [] }) => {
             </div>
           )}
           {images && images[1] && (
-            <div className="col-span-2">
+            <div className="shadow-xl col-span-1 lg:col-span-2">
               <img
                 src={images[1]}
                 alt="Story"
@@ -29,7 +29,7 @@ const GallerySection = ({ images = [] }) => {
             </div>
           )}
           {images && images[2] && (
-            <div className="col-span-1">
+            <div className="shadow-xl col-span-1">
               <img
                 src={images[2]}
                 alt="Story"
@@ -38,7 +38,7 @@ const GallerySection = ({ images = [] }) => {
             </div>
           )}
           {images && images[3] && (
-            <div className="col-span-2">
+             <div className="shadow-xl col-span-1 lg:col-span-2">
               <img
                 src={images[3]}
                 alt="Story"
@@ -47,7 +47,7 @@ const GallerySection = ({ images = [] }) => {
             </div>
           )}
           {images && images[4] && (
-            <div className="col-span-1">
+            <div className="shadow-xl col-span-1">
               <img
                 src={images[4]}
                 alt="Story"
@@ -56,7 +56,7 @@ const GallerySection = ({ images = [] }) => {
             </div>
           )}
           {images && images[5] && (
-            <div className="col-span-1">
+            <div className="shadow-xl col-span-1">
               <img
                 src={images[5]}
                 alt="Story"

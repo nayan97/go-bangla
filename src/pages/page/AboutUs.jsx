@@ -34,7 +34,7 @@ const AboutUs = () => {
         <ul className="list-disc pl-5 mt-3 space-y-2">
           <li>
             <a
-              href="https://tour-app.vercel.app"
+              href="https://gobangla-fc335.web.app/"
               className="text-blue-500 underline"
               target="_blank"
               rel="noopener noreferrer"
@@ -45,7 +45,7 @@ const AboutUs = () => {
           </li>
           <li>
             <a
-              href="https://myportfolio.com"
+              href="https://github.com/nayan97"
               className="text-blue-500 underline"
               target="_blank"
               rel="noopener noreferrer"

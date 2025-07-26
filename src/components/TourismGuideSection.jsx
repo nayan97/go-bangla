@@ -10,12 +10,12 @@ const TourismGuideSection = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/packages/random")
+    fetch("https://gobangla-server.vercel.app/api/packages/random")
       .then((res) => res.json())
       .then(setPackages);
     // console.log(packages.price);
 
-    fetch("http://localhost:3000/api/guides/random")
+    fetch("https://gobangla-server.vercel.app/api/guides/random")
       .then((res) => res.json())
       .then(setGuides);
   }, []);
@@ -38,12 +38,13 @@ const TourismGuideSection = () => {
           <div>
             <h1>tour Packages</h1>
           </div>
-                <motion.div
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-          className="grid md:grid-cols-1 lg:grid-cols-3 gap-6 mt-4">
+            className="grid md:grid-cols-1 lg:grid-cols-3 gap-6 mt-4"
+          >
             {packages.map((pkg) => (
               <div key={pkg._id} className="bg-white rounded-xl shadow-md p-4">
                 <img
@@ -66,7 +67,7 @@ const TourismGuideSection = () => {
                 </div>
               </div>
             ))}
-         </motion.div>
+          </motion.div>
         </TabPanel>
 
         {/* Guides Tab */}
@@ -79,7 +80,7 @@ const TourismGuideSection = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-4"
+            className="grid md:grid-cols-1 lg:grid-cols-3 gap-6 mt-4"
           >
             {guides.map((guide) => (
               <div
