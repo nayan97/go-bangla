@@ -1,15 +1,15 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { FacebookShareButton, FacebookIcon } from "react-share";
-import { useNavigate } from "react-router";
-import useAuth from "../hooks/useAuth"; 
+import { Link, useNavigate } from "react-router";
 import { motion } from "framer-motion";
 import useAxios from "../hooks/useAxios";
+import Spinner from "./Spinner";
 
 const TouristStories = () => {
   const axiosSecure = useAxios();
   const navigate = useNavigate();
-  const { user } = useAuth(); 
+
 
   const { data: stories = [], isLoading } = useQuery({
     queryKey: ["randomStories"],
@@ -19,17 +19,12 @@ const TouristStories = () => {
     },
   });
 
-  const handleShareClick = (e, storyId) => {
-    if (!user) {
-      e.preventDefault();
-      navigate("/login");
-    }
-  };
+
 
   return (
     <div className="p-6 bg-white rounded-xl shadow mt-10">
       <div className="flex justify-between items-center mb-6">
-        <h2 className=" text-end text-2xl font-bold">Tourist Stories</h2>
+        <h2 className=" text-end text-2xl font-bold ">Tourist Stories</h2>
         <button
           className="btn btn-outline btn-sm"
           onClick={() => navigate("/community")}
@@ -39,21 +34,22 @@ const TouristStories = () => {
       </div>
 
       {isLoading ? (
-        <p>Loading stories...</p>
+     <Spinner></Spinner>
       ) : (
         <motion.div
-         initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-           className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+        >
           {stories.map((story) => (
             <div
               key={story._id}
               className="bg-gray-50 rounded-xl shadow p-4 flex flex-col"
             >
               <img
-                src={story.imageUrls [0] || "/placeholder.jpg"}
+                src={story.imageUrls[0] || "/placeholder.jpg"}
                 alt={story.title}
                 className="rounded-md h-40 w-full object-cover"
               />
@@ -67,17 +63,17 @@ const TouristStories = () => {
                 <p className="text-sm text-gray-500">
                   by <span className="font-semibold">{story.email}</span>
                 </p>
-                <FacebookShareButton
-                  url={`${window.location.origin}/story/${story._id}`}
-                  quote={story.title}
-                  onClick={(e) => handleShareClick(e, story._id)}
-                >
-                  <FacebookIcon size={32} round />
-                </FacebookShareButton>
+       
               </div>
+                       <Link
+                  to={`/community/story/${story._id}`}
+                  className="text-blue-500 font-medium hover:underline items-end mt-3"
+                >
+                  Read More →
+                </Link>
             </div>
           ))}
-         </motion.div>
+        </motion.div>
       )}
     </div>
   );

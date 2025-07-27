@@ -28,6 +28,7 @@ import CommunityPage from "../pages/page/CommunityPage";
 import AboutUs from "../pages/page/AboutUs";
 import Trips from "../pages/page/Trips";
 import GuideProfile from "../pages/page/GuideProfile";
+import StoryDetails from "../pages/page/StoryDetails";
 
 export const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ export const router = createBrowserRouter([
       {
         path: "community",
         Component: CommunityPage,
+      },
+      {
+        path: "/community/story/:id",
+        Component: StoryDetails,
       },
       {
         path: "/guide-profile/:email",

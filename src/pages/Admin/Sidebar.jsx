@@ -12,7 +12,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import useUserRole from "../../hooks/useUserRole";
-
+import logo from "../../assets/logo/logo.jpeg";
 
 const Sidebar = ({ isOpen }) => {
   const { role, isLoading } = useUserRole();
@@ -26,6 +26,17 @@ const Sidebar = ({ isOpen }) => {
       } overflow-hidden`}
     >
       <div className="space-y-2">
+        <div className="p-1 mt-[-15px] ml-[-15px]">
+          <NavLink to="/" className="flex justify-start p-2 ml-[-8]">
+           
+              <span className="flex items-start gap-2">
+                <img src={logo} alt="Logo" className="h-12 w-12 rounded-full" />
+                <span className="pt-4">Go Bangla</span>
+              </span>
+           
+          </NavLink>
+        </div>
+
         <NavLink to="/dashboard" className={linkClasses}>
           <LayoutDashboard className="w-5 h-5" />
           {isOpen && <span>Dashboard</span>}
