@@ -17,7 +17,12 @@ const ManageProfile = () => {
   useEffect(() => {
     axiosSecure
       .get("/api/admin-stats")
-      .then((res) => setStats(res.data))
+      .then((res) => {
+        setStats(res.data)
+
+        console.log(res.data)
+      })
+      
       .catch((err) => console.error(err));
   }, []);
 

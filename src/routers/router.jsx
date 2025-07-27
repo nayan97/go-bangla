@@ -29,6 +29,8 @@ import AboutUs from "../pages/page/AboutUs";
 import Trips from "../pages/page/Trips";
 import GuideProfile from "../pages/page/GuideProfile";
 import StoryDetails from "../pages/page/StoryDetails";
+import ManagePackage from "../pages/Admin/Tour/ManagePackage";
+import EditTourPackage from "../pages/Admin/Tour/EditTourPackage";
 
 export const router = createBrowserRouter([
   {
@@ -150,6 +152,14 @@ export const router = createBrowserRouter([
             <AddTourPackage></AddTourPackage>
           </AdminRoute>
         ),
+      },
+      {
+        path: "manage-tour",
+        Component: ManagePackage,
+      },
+         {
+        path: "edit-package/:id",
+        Component: EditTourPackage,
       },
     ],
   },

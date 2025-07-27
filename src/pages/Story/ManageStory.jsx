@@ -119,7 +119,9 @@ const ManageStory = () => {
             ))}
           </>
         )}
-      </div>    {/* ✅ Pagination */}
+      </div>    
+      
+      {/* ✅ Pagination */}
       <div className="flex justify-between items-center mt-4">
         <span className="text-sm text-gray-600">
           Showing {startIdx + 1} -{" "}

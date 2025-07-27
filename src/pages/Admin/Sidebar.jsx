@@ -10,6 +10,7 @@ import {
   UserCog,
   PackagePlus,
   ShieldCheck,
+  PackageSearch,
 } from "lucide-react";
 import useUserRole from "../../hooks/useUserRole";
 import logo from "../../assets/logo/logo.jpeg";
@@ -62,6 +63,11 @@ const Sidebar = ({ isOpen }) => {
             <NavLink to="/dashboard/add-tour" className={linkClasses}>
               <PackagePlus className="w-5 h-5" />
               {isOpen && <span>Add Tour Plan</span>}
+            </NavLink>
+               <NavLink to="/dashboard/manage-tour" className={linkClasses}>
+              
+              <PackageSearch className="w-5 h-5" />
+              {isOpen && <span>Manage Tour Plan</span>}
             </NavLink>
 
             <NavLink to="/dashboard/pending_guides" className={linkClasses}>
