@@ -31,8 +31,8 @@ const Sidebar = ({ isOpen }) => {
           <NavLink to="/" className="flex justify-start p-2 ml-[-8]">
            
               <span className="flex items-start gap-2">
-                <img src={logo} alt="Logo" className="h-12 w-12 rounded-full" />
-                <span className="pt-4">Go Bangla</span>
+                <img src={logo} alt="Logo" className="ml-2 h-12 w-12 rounded-full" />
+                <span className="pt-4 pl-2">Go Bangla</span>
               </span>
            
           </NavLink>

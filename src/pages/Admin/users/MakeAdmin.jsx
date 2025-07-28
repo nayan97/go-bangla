@@ -20,7 +20,7 @@ const MakeAdmin = () => {
     const fetchUsers = async (searchText) => {
   if (!searchText) return [];
   const res = await axiosdata.get(`/users/search?email=${searchText}`);
-  console.log("fetched users:", res.data);
+  // console.log("fetched users:", res.data);
   return res.data;
 };
   // Debounce input

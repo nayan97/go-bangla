@@ -1,12 +1,62 @@
-# React + Vite
+# 🌍 GoBangla Travel Guide 🧳
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack travel and tourism web application built with **MERN Stack**, enabling users to explore curated travel packages, meet expert tour guides, and book memorable adventures — all through a modern, responsive UI.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌐 Live Site
 
-## Expanding the ESLint configuration
+🔗 https://gobangla-fc335.web.app/ 
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+admin: admin@gmail.com
+pass: asdfg123
+
+---
+
+## ✨ Features
+
+- 🔐 **Google Authentication** (Firebase)
+- 🧑‍🤝‍🧑 **User Roles**: Admin, Guide, User
+- 📦 **Tour Packages**: Add, edit, delete with gallery and FAQs
+- 📸 **Image Uploads**: With preview and removal
+- 🎯 **Tour Booking System** with status management
+- 👨‍💼 **Tour Guide Profiles** with assigned tours
+- 🔎 **Search & Filters** on packages and users
+- 📅 **Tour Plan View**: See trip breakdown by day
+- 💳 **Payment Integration** (Stripe)
+- 🛡️ **Protected Routes & Access Control**
+- ✅ Toast notifications and confirmation modals
+- 📱 Fully responsive (Tailwind CSS + DaisyUI)
+
+---
+
+## 🧑‍💻 Tech Stack
+
+| Frontend        | Backend         | Database     | Tools & Auth     |
+|-----------------|------------------|--------------|------------------|
+| React.js        | Express.js       | MongoDB      | Firebase Auth    |
+| Tailwind CSS    | Node.js          | MongoDB Atlas| Stripe API       |
+| DaisyUI         | REST APIs        |              | React Hook Form  |
+| React Router    |                  |              | React Toastify   |
+
+---
+
+
+
+## 📸 Screenshots
+
+![alt text](image.png)
+
+---
+
+
+---
+
+## 👨‍🔧 Author
+
+**Nayan Islam**  
+💼 MERN Stack & Laravel Developer  
+📧 [nayanislam085@gmail.com](mailto:nayanislam085@gmail.com)
+
+
+

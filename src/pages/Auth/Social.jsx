@@ -1,29 +1,63 @@
 import React from "react";
 import useAuth from "../../hooks/useAuth";
-
-
+import useAxios from "../../hooks/useAxios";
+import { useLocation, useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 const Social = () => {
-
+  const axiosUserSecure = useAxios();
 
   const { loginWithGoogle } = useAuth();
 
+  const location = useLocation();
+  const navigate = useNavigate();
   // console.log(location);
+  const from = location.state?.from || "/";
 
+  // console.log(location);
 
   const handleGoogleLogin = () => {
     loginWithGoogle()
-      .then( async(result) => {
-        // console.log(result);
+      .then(async (result) => {
         const user = result.user;
-        console.log(user);
-        
 
+        const userInfo = {
+          name: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+
+          role: "user",
+          created_at: new Date().toISOString(),
+          last_signin_at: new Date().toISOString(),
+        };
+
+        try {
+          const userRes = await axiosUserSecure.post("/api/users", userInfo);
+          console.log(userRes.data);
+          toast.success("User saved successfully 🎉");
+        } catch (err) {
+          console.error(
+            "Error saving user to DB:",
+            err.response?.data || err.message
+          );
+
+          if (err.response?.status === 409) {
+            toast.info("User already exists. Logging in...");
+          } else {
+            toast.error("Failed to save user");
+            return;
+          }
+        }
+
+        toast.success("Login successful 👋");
+        navigate(from);
       })
       .catch((error) => {
         console.log(error);
+        toast.error("Google login failed");
       });
   };
+
   return (
     <div>
       <div className="divider">OR</div>

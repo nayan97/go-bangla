@@ -3,8 +3,11 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const JoinAsGuide = () => {
+  const [profilePic, setProfilePic] = useState("");
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const {
@@ -24,6 +27,7 @@ const JoinAsGuide = () => {
 
     const guideApplicationData = {
       ...data, // includes: title, reason, cvLink
+      profilePic, 
       createdAt: new Date().toISOString(),
       status: "pending",
       approved: false,
@@ -67,6 +71,22 @@ const JoinAsGuide = () => {
     });
   };
 
+  const handlePhotoUpload = async (e) => {
+    const img = e.target.files[0];
+    const formData = new FormData();
+    formData.append("image", img);
+
+    try {
+      const imgUploadUrl = `https://api.imgbb.com/1/upload?key=${
+        import.meta.env.VITE_image_upload_key
+      }`;
+      const res = await axios.post(imgUploadUrl, formData);
+      setProfilePic(res.data.data.display_url);
+    } catch (err) {
+      console.error("Image upload failed:", err);
+      toast.error("Failed to upload image.");
+    }
+  };
   return (
     <div className="max-w-xl mx-auto p-6 mt-10 bg-white shadow-lg rounded-xl">
       <h2 className="text-2xl font-bold mb-6 text-center text-green-700">
@@ -87,6 +107,23 @@ const JoinAsGuide = () => {
             <p className="text-red-500 mt-1">{errors.title.message}</p>
           )}
         </div>
+        {/* Profile Photo */}
+        <label className="label">Profile Photo</label>
+        <input
+          type="file"
+          onChange={handlePhotoUpload}
+          className="file-input file-input-bordered w-full"
+        />
+
+        {profilePic && (
+          <div className="mt-3">
+            <img
+              src={profilePic}
+              alt="Preview"
+              className="h-24 rounded-lg border"
+            />
+          </div>
+        )}
 
         <div className="mt-4">
           <label className="label font-medium">Experience</label>

@@ -184,7 +184,7 @@ const AddTourPackage = () => {
         <Select
           isMulti
           options={guides.map((guide) => ({
-            value: guide.name,
+            value: guide.email,
             label: guide.name,
           }))}
           onChange={(selectedOptions) =>

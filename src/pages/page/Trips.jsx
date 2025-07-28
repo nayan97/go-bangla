@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { useNavigate } from "react-router";
 import useAxios from "../../hooks/useAxios";
+import Spinner from "../../components/Spinner";
 
 const Trips = () => {
   const axiosSecure = useAxios();
@@ -35,7 +36,7 @@ const Trips = () => {
       </div>
 
       {isLoading ? (
-        <p className="text-center mt-10">Loading packages...</p>
+       <Spinner></Spinner>
       ) : (
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}

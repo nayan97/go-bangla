@@ -100,9 +100,9 @@ export const router = createBrowserRouter([
       {
         path: "join_as_guide",
         element: (
-          <PrivateRoute>
+        
             <JoinAsGuide></JoinAsGuide>
-          </PrivateRoute>
+          
         ),
       },
       {
@@ -131,33 +131,21 @@ export const router = createBrowserRouter([
       },
       {
         path: "pending_guides",
-        element: (
-          <PrivateRoute>
-            <PendingGuides></PendingGuides>
-          </PrivateRoute>
-        ),
+        element: <PendingGuides></PendingGuides>,
       },
       {
         path: "make-admin",
-        element: (
-          <AdminRoute>
-            <MakeAdmin></MakeAdmin>
-          </AdminRoute>
-        ),
+        element: <MakeAdmin></MakeAdmin>,
       },
       {
         path: "add-tour",
-        element: (
-          <AdminRoute>
-            <AddTourPackage></AddTourPackage>
-          </AdminRoute>
-        ),
+        element: <AddTourPackage></AddTourPackage>,
       },
       {
         path: "manage-tour",
         Component: ManagePackage,
       },
-         {
+      {
         path: "edit-package/:id",
         Component: EditTourPackage,
       },

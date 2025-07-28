@@ -88,7 +88,7 @@ const TourismGuideSection = () => {
                 className="bg-white rounded-xl shadow-md p-4"
               >
                 <img
-                  src={guide.photo}
+                  src={guide.profilePic}
                   alt={guide.name}
                   className="rounded-md h-40 w-full object-cover"
                 />
