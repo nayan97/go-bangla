@@ -14,7 +14,7 @@ const Slider = () => {
     "https://i.ibb.co/KcMNz7YQ/sun-banner-3.webp";
 
   return (
-    <div className="w-full max-w-7xl mx-auto mt-8 rounded-2xl overflow-hidden shadow-lg">
+    <div className="w-full  max-w-[1440px] mx-auto mt-8 rounded-2xl overflow-hidden shadow-lg">
       <Swiper
         spaceBetween={30}
         centeredSlides={true}

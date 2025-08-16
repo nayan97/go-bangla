@@ -25,7 +25,7 @@ const tips = [
 const TouristTips = () => {
   return (
     <section className="py-10 bg-base-100">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className=" max-w-[1440px] mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-8">🧭 Tourist Tips</h2>
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}

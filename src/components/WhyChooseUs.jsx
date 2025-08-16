@@ -34,7 +34,7 @@ const WhyChooseUs = () => {
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/60"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 text-center text-white">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center text-white">
         <motion.h2
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}

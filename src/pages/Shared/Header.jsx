@@ -2,6 +2,7 @@ import React from "react";
 import { Link, NavLink } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import logo from "../../assets/logo/logo.jpeg"
+import ThemeToggle from "../../components/ThemeToggle"
 
 const Header = () => {
   const { user, logoutUser } = useAuth();
@@ -33,8 +34,8 @@ const Header = () => {
   );
 
   return (
-    <div>
-      <div className="navbar bg-base-100 shadow-sm">
+  
+      <div className="navbar bg-base-100 shadow-sm fixed top-0 z-50">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -67,6 +68,7 @@ const Header = () => {
           <ul className="menu menu-horizontal px-1">{Navlinks}</ul>
         </div>
         <div className="navbar-end space-x-2">
+          <ThemeToggle></ThemeToggle>{" "}
           {user ? (
             <>
               {" "}
@@ -114,7 +116,7 @@ const Header = () => {
           )}
         </div>
       </div>
-    </div>
+   
   );
 };
 

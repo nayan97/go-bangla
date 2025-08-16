@@ -29,7 +29,7 @@ const OverviewSection = () => {
       <div className="text-center mb-6">
         <h2 className="text-2xl font-bold">Overview Section</h2>
       </div>
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+      <div className="max-w-[1440px] mx-auto grid md:grid-cols-2 gap-10 items-center">
         {/* Text Content */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}

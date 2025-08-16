@@ -19,7 +19,7 @@ const Newsletter = () => {
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-gray-700 mb-8"
+          className="mb-8"
         >
           Get the latest travel updates, safety tips, and exclusive offers 
           delivered straight to your inbox.
@@ -39,7 +39,7 @@ const Newsletter = () => {
           />
           <button
             type="submit"
-            className="btn bg-blue-500 hover:bg-blue-600 text-white rounded-xl px-6 py-3"
+            className="btn btn-success text-white rounded-xl px-6 py-3"
           >
             Subscribe
           </button>
