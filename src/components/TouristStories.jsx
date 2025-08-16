@@ -22,7 +22,7 @@ const TouristStories = () => {
 
 
   return (
-    <div className="p-6 bg-white rounded-xl shadow mt-10">
+    <div className="p-6 bg-white rounded-xl shadow mt-10 max-w-[1440px] mx-auto">
       <div className="flex justify-between items-center mb-6">
         <h2 className=" text-end text-2xl font-bold ">Tourist Stories</h2>
         <button
