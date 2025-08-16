@@ -25,7 +25,7 @@ const OverviewSection = () => {
   };
 
   return (
-    <section className="py-16 px-4 bg-gradient-to-b from-white to-[#f0f8ff]">
+   <section className="py-16 px-4 bg-base-200">
       <div className="text-center mb-6">
         <h2 className="text-2xl font-bold">Overview Section</h2>
       </div>
@@ -37,16 +37,16 @@ const OverviewSection = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+          <h2 className="text-4xl font-bold mb-4">
             Discover the Beauty of Bangladesh
           </h2>
-          <p className="text-gray-600 mb-6 leading-relaxed">
+          <p className="mb-6 leading-relaxed">
             GoBangla is your ultimate travel companion. Explore curated tour
             packages, connect with local guides, and experience unforgettable
             journeys across Bangladesh.
           </p>
           <Link to="/packages">
-            <button className="btn btn-primary text-white px-6 rounded-full shadow-lg">
+            <button className="btn btn-outline text-white px-6 rounded-full shadow-lg">
               Explore Packages
             </button>
           </Link>

@@ -25,15 +25,15 @@ const CommunityPage = () => {
       {stories.map((story) => (
         <div
           key={story._id}
-          className="bg-white rounded-2xl shadow-md p-5 border border-gray-200"
+          className="bg-base-100 rounded-2xl shadow-md p-5"
         >
           <div className="flex items-center mb-3">
-            <div className="bg-gray-300 h-10 w-10 rounded-full mr-3" />
+            <div className="bg-base-200 h-10 w-10 rounded-full mr-3" />
             <div>
               <h2 className="text-lg font-semibold">
                 {story.username || story.email}
               </h2>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm">
                 {new Date(story.createdAt).toLocaleString()}
               </p>
             </div>
@@ -41,7 +41,7 @@ const CommunityPage = () => {
           <div className="mb-4">
             <Link
               to={`/community/story/${story._id}`}
-              className="text-xl font-semibold text-blue-600 hover:underline"
+              className="text-xl font-semibold hover:underline"
             >
               {story.title}
             </Link>
@@ -52,7 +52,7 @@ const CommunityPage = () => {
                 className="mt-4 rounded-lg max-h-96 object-cover w-full"
               />
             )}
-            <p className="text-gray-800 whitespace-pre-line py-6 line-clamp-4">
+            <p className="whitespace-pre-line py-6 line-clamp-4">
               {story.content}
             </p>
             <Link

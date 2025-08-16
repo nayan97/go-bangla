@@ -50,7 +50,7 @@ const TouristTips = () => {
                 <h3 className="card-title text-xl font-semibold">
                   {tip.title}
                 </h3>
-                <p className="text-sm text-gray-700">{tip.description}</p>
+                <p className="text-sm">{tip.description}</p>
               </div>
             </div>
           ))}

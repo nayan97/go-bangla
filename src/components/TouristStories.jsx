@@ -22,7 +22,7 @@ const TouristStories = () => {
 
 
   return (
-    <div className="p-6 bg-white rounded-xl shadow mt-10">
+    <div className="p-6 bg-base-100 rounded-xl shadow mt-10">
       <div className="flex justify-between items-center mb-6">
         <h2 className=" text-end text-2xl font-bold ">Tourist Stories</h2>
         <button
@@ -46,7 +46,7 @@ const TouristStories = () => {
           {stories.map((story) => (
             <div
               key={story._id}
-              className="bg-gray-50 rounded-xl shadow p-4 flex flex-col"
+              className="bg-base-200 rounded-xl shadow p-4 flex flex-col"
             >
               <img
                 src={story.imageUrls[0] || "/placeholder.jpg"}

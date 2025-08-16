@@ -21,7 +21,7 @@ const TourismGuideSection = () => {
   }, []);
 
   return (
-    <div className="p-6 bg-gray-50 rounded-xl shadow">
+    <div className="p-6 bg-base-200 rounded-xl shadow">
       <h2 className="text-3xl font-bold mb-4 text-center">
         Tourism & Travel Guide
       </h2>
@@ -46,7 +46,7 @@ const TourismGuideSection = () => {
             className="grid md:grid-cols-1 lg:grid-cols-3 gap-6 mt-4"
           >
             {packages.map((pkg) => (
-              <div key={pkg._id} className="bg-white rounded-xl shadow-md p-4">
+              <div key={pkg._id} className="bg-base-100 rounded-xl shadow-md p-4">
                 <img
                   src={pkg.images?.[0] || "/placeholder.jpg"}
                   alt={pkg.title}
@@ -85,7 +85,7 @@ const TourismGuideSection = () => {
             {guides.map((guide) => (
               <div
                 key={guide._id}
-                className="bg-white rounded-xl shadow-md p-4"
+                className="bg-base-100 rounded-xl shadow-md p-4"
               >
                 <img
                   src={guide.profilePic}
@@ -94,7 +94,7 @@ const TourismGuideSection = () => {
                 />
                 <div className="mt-3">
                   <h3 className="text-lg font-bold">{guide.name}</h3>
-                  <p className="text-gray-600">
+                  <p className="">
                     {guide.experience} years experience
                   </p>
                   <button

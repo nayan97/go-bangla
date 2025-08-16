@@ -54,7 +54,7 @@ const WhyChooseUs = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.2, duration: 0.6 }}
               viewport={{ once: true }}
-              className="bg-white text-gray-800 rounded-2xl shadow-lg p-6 hover:shadow-xl transition"
+              className="bg-base-200 rounded-2xl shadow-lg p-6 hover:shadow-xl transition"
             >
               <div className="text-4xl mb-4">{item.icon}</div>
               <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
