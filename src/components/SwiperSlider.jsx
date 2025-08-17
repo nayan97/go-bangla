@@ -32,7 +32,7 @@ const Slider = () => {
         {/* Slide 1 */}
         <SwiperSlide>
           <div
-            className="h-96 bg-cover bg-center relative"
+            className="h-64 md:h-96 lg:h-100 bg-cover bg-center relative"
             style={{ backgroundImage: `url(${backgroundImage1})` }}
           >
             {/* Overlay */}
@@ -40,8 +40,8 @@ const Slider = () => {
 
             {/* Content */}
             <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-6 z-10">
-              <h2 className="text-3xl font-bold mb-2">🌍 Explore the World, One Journey at a Time</h2>
-              <p className="text-lg">
+              <h2 className="text-xl lg:text-3xl font-bold mb-2">🌍 Explore the World, One Journey at a Time</h2>
+              <p className="text-md lg:text-lg">
                 Discover unforgettable adventures with us — your passport to wonder.
               </p>
             </div>
@@ -51,14 +51,14 @@ const Slider = () => {
         {/* Slide 2 */}
         <SwiperSlide>
           <div
-            className="h-64 md:h-96 bg-cover bg-center relative"
+            className="h-64 md:h-96 lg:h-100 bg-cover bg-center relative"
             style={{ backgroundImage: `url(${backgroundImage2})` }}
           >
             {/* Overlay */}
             <div className="absolute inset-0 bg-gray-900 opacity-10 z-0"></div>
             <div className="absolute inset-0  flex flex-col items-center justify-center text-white  text-center p-6">
-              <h2 className="text-3xl font-bold mb-2">🏝️ Turn Your Travel Dreams into Reality</h2>
-              <p className="text-lg">
+              <h2 className="text-xl lg:text-3xl font-bold mb-2">🏝️ Turn Your Travel Dreams into Reality</h2>
+              <p className="text-md lg:text-lg">
                 Custom tours, local guides, and lifelong memories — all in one place.
               </p>
             </div>
@@ -68,14 +68,14 @@ const Slider = () => {
         {/* Slide 3 */}
         <SwiperSlide>
           <div
-            className="h-64 md:h-96 bg-cover bg-black bg-opacity-10 bg-center relative"
+            className="h-64 md:h-96 lg:h-100 bg-cover bg-black bg-opacity-10 bg-center relative"
             style={{ backgroundImage: `url(${backgroundImage3})` }}
           >
             {/* Overlay */}
             <div className="absolute inset-0 bg-gray-900 opacity-10 z-0"></div>
             <div className="absolute inset-0 flex flex-col items-center justify-center text-white  text-center p-6">
-              <h2 className="text-3xl font-bold mb-2">✈️ Pack Your Bags, The World Awaits</h2>
-              <p className="text-lg">
+              <h2 className="text-xl lg:text-3xl font-bold mb-2">✈️ Pack Your Bags, The World Awaits</h2>
+              <p className="text-md lg:text-lg">
                From hidden gems to iconic landmarks — we take you there.
               </p>
             </div>

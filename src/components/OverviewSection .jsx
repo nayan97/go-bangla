@@ -46,7 +46,7 @@ const OverviewSection = () => {
             journeys across Bangladesh.
           </p>
           <Link to="/packages">
-            <button className="btn btn-outline text-white px-6 rounded-full shadow-lg">
+            <button className="btn btn-success text-white rounded-full px-6 py-3">
               Explore Packages
             </button>
           </Link>

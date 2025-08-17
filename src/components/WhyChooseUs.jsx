@@ -34,7 +34,7 @@ const WhyChooseUs = () => {
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/60"></div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center text-white">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
         <motion.h2
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -42,7 +42,7 @@ const WhyChooseUs = () => {
           viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold mb-12"
         >
-          ⭐ Why Choose Us
+          <h2 className="text-white">⭐ Why Choose Us</h2>
         </motion.h2>
 
         {/* Feature Cards */}
