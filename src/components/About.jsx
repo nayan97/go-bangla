@@ -89,6 +89,7 @@ const About = () => {
             </div>
             <a
               href="/resume.pdf"
+              download="Nayan_Resume.pdf"
               className="bg-green-400 text-white px-5 py-3 rounded-full font-semibold hover:bg-green-300 transition"
             >
               My Resume

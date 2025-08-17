@@ -17,18 +17,46 @@ const Header = () => {
   };
 
   const Navlinks = (
-    <>
+  <>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? "text-green-400 font-bold my-2" : "my-2"
+          }
+        >
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/community">Community</NavLink>
-      </li>
-         <li>
-        <NavLink to="/about-us">About Us</NavLink>
+        <NavLink
+          to="/community"
+          className={({ isActive }) =>
+            isActive ? "text-green-400 font-bold my-2" : "my-2"
+          }
+        >
+          Community
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/all-trips">Trips</NavLink>
+        <NavLink
+          to="/about-us"
+          className={({ isActive }) =>
+            isActive ? "text-green-400 font-bold my-2" : "my-2"
+          }
+        >
+          About Us
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/all-trips"
+          className={({ isActive }) =>
+            isActive ? "text-green-400 font-bold my-2" : "my-2"
+          }
+        >
+          Trips
+        </NavLink>
       </li>
     </>
   );

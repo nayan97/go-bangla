@@ -7,7 +7,7 @@ const Footer = () => {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            isActive ? "text-[#0EA106] font-bold my-2" : "my-2"
+            isActive ? "text-green-400 font-bold my-2" : "my-2"
           }
         >
           Home
@@ -17,7 +17,7 @@ const Footer = () => {
         <NavLink
           to="/community"
           className={({ isActive }) =>
-            isActive ? "text-[#0EA106] font-bold my-2" : "my-2"
+            isActive ? "text-green-400 font-bold my-2" : "my-2"
           }
         >
           Community
@@ -27,7 +27,7 @@ const Footer = () => {
         <NavLink
           to="/about-us"
           className={({ isActive }) =>
-            isActive ? "text-[#0EA106] font-bold my-2" : "my-2"
+            isActive ? "text-green-400 font-bold my-2" : "my-2"
           }
         >
           About Us
@@ -37,7 +37,7 @@ const Footer = () => {
         <NavLink
           to="/all-trips"
           className={({ isActive }) =>
-            isActive ? "text-[#0EA106] font-bold my-2" : "my-2"
+            isActive ? "text-green-400 font-bold my-2" : "my-2"
           }
         >
           Trips
@@ -51,7 +51,7 @@ const Footer = () => {
         <NavLink
           to="terms"
           className={({ isActive }) =>
-            isActive ? "text-[#0EA106] font-bold my-2" : "my-2"
+            isActive ? "text-green-400 font-bold my-2" : "my-2"
           }
         >
           Terms of use
@@ -61,7 +61,7 @@ const Footer = () => {
         <NavLink
           to="/privacy"
           className={({ isActive }) =>
-            isActive ? "text-[#0EA106] font-bold my-2" : "my-2"
+            isActive ? "text-green-400 font-bold my-2" : "my-2"
           }
         >
           Privacy policy
@@ -71,7 +71,7 @@ const Footer = () => {
         <NavLink
           to="/cookie"
           className={({ isActive }) =>
-            isActive ? "text-[#0EA106] font-bold my-2" : "my-2"
+            isActive ? "text-green-400 font-bold my-2" : "my-2"
           }
         >
           Cookie policy
