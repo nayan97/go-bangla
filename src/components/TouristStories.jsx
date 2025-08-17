@@ -55,12 +55,12 @@ const TouristStories = () => {
               />
               <div className="mt-3 flex-1">
                 <h3 className="text-lg font-bold">{story.title}</h3>
-                <p className="text-sm text-gray-600 mt-1 line-clamp-3">
+                <p className="text-sm mt-1 line-clamp-3">
                   {story.content}
                 </p>
               </div>
               <div className="mt-4 flex justify-between items-center">
-                <p className="text-sm text-gray-500">
+                <p className="text-sm">
                   by <span className="font-semibold">{story.email}</span>
                 </p>
        

@@ -31,6 +31,9 @@ import GuideProfile from "../pages/page/GuideProfile";
 import StoryDetails from "../pages/page/StoryDetails";
 import ManagePackage from "../pages/Admin/Tour/ManagePackage";
 import EditTourPackage from "../pages/Admin/Tour/EditTourPackage";
+import { TermsOfUse } from "../pages/page/TermsOfUse";
+import { PrivacyPolicy } from "../pages/page/PrivacyPolicy";
+import { CookiePolicy } from "../pages/page/CookiePolicy";
 
 export const router = createBrowserRouter([
   {
@@ -70,6 +73,18 @@ export const router = createBrowserRouter([
       {
         path: "about-us",
         Component: AboutUs,
+      },
+           {
+        path: "terms",
+        Component: TermsOfUse,
+      },
+           {
+        path: "privacy",
+        Component: PrivacyPolicy,
+      },
+           {
+        path: "cookie",
+        Component: CookiePolicy,
       },
       {
         path: "all-trips",

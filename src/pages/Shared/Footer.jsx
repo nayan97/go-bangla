@@ -1,9 +1,6 @@
 import { NavLink } from "react-router";
 
-
 const Footer = () => {
-
-
   const links = (
     <>
       <li>
@@ -17,19 +14,68 @@ const Footer = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/community"     className={({ isActive }) =>
+        <NavLink
+          to="/community"
+          className={({ isActive }) =>
             isActive ? "text-[#0EA106] font-bold my-2" : "my-2"
-          }>Community</NavLink>
+          }
+        >
+          Community
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/about-us"     className={({ isActive }) =>
+        <NavLink
+          to="/about-us"
+          className={({ isActive }) =>
             isActive ? "text-[#0EA106] font-bold my-2" : "my-2"
-          }>About Us</NavLink>
+          }
+        >
+          About Us
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/all-trips"     className={({ isActive }) =>
+        <NavLink
+          to="/all-trips"
+          className={({ isActive }) =>
             isActive ? "text-[#0EA106] font-bold my-2" : "my-2"
-          }>Trips</NavLink>
+          }
+        >
+          Trips
+        </NavLink>
+      </li>
+    </>
+  );
+  const Policy = (
+    <>
+      <li>
+        <NavLink
+          to="terms"
+          className={({ isActive }) =>
+            isActive ? "text-[#0EA106] font-bold my-2" : "my-2"
+          }
+        >
+          Terms of use
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/privacy"
+          className={({ isActive }) =>
+            isActive ? "text-[#0EA106] font-bold my-2" : "my-2"
+          }
+        >
+          Privacy policy
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/cookie"
+          className={({ isActive }) =>
+            isActive ? "text-[#0EA106] font-bold my-2" : "my-2"
+          }
+        >
+          Cookie policy
+        </NavLink>
       </li>
     </>
   );
@@ -43,9 +89,7 @@ const Footer = () => {
           </nav>
           <nav>
             <h6 className="footer-title">Legal</h6>
-            <a className="link link-hover">Terms of use</a>
-            <a className="link link-hover">Privacy policy</a>
-            <a className="link link-hover">Cookie policy</a>
+            <ul className="px-1 font-medium">{Policy}</ul>
           </nav>
           <nav>
             <h6 className="footer-title">Social</h6>
