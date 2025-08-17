@@ -74,7 +74,7 @@ const Newsletter = () => {
           />
           <button
             type="submit"
-            className="btn btn-success text-white rounded-full px-6 py-3"
+            className="btn bg-green-400 text-white rounded-full px-6 py-3"
           >
             Subscribe
           </button>

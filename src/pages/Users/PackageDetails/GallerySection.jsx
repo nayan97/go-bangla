@@ -2,8 +2,8 @@ import React from "react";
 
 const GallerySection = ({ images = [] }) => {
   return (
-    <section className="bg-[#d9d7d0] py-10 flex justify-center">
-      <div className="bg-white shadow-xl p-2 md:p-10 w-full max-w-5xl">
+    <section className="bg-base-200 py-10 flex justify-center rounded-2xl">
+      <div className="bg-base-100 shadow-xl p-2 md:p-10 w-full max-w-5xl rounded-2xl">
         <h2 className="mb-8 text-2xl md:text-3xl font-semibold tracking-wide flex items-center">
           <span className="inline-block w-10 h-px bg-black mr-4" />
           GALLERY
@@ -11,7 +11,7 @@ const GallerySection = ({ images = [] }) => {
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
           {images && images[0] && (
-            <div className="shadow-xl bg-white col-span-1">
+            <div className="shadow-xl col-span-1">
               <img
                 src={images[0]}
                 alt="Story"

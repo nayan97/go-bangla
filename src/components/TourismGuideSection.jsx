@@ -53,9 +53,9 @@ const TourismGuideSection = () => {
                   className="rounded-md h-40 w-full object-cover"
                 />
                 <div className="mt-3">
-                  <p className="text-sm text-gray-500">{pkg.type}</p>
+                  <p className="text-sm">{pkg.type}</p>
                   <h3 className="text-lg font-bold">{pkg.title}</h3>
-                  <p className="text-blue-600 font-semibold mt-1">
+                  <p className="text-green-400 font-semibold mt-1">
                     ${pkg.price}
                   </p>
                   <button

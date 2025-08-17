@@ -67,7 +67,7 @@ const TouristStories = () => {
               </div>
                        <Link
                   to={`/community/story/${story._id}`}
-                  className="btn btn-success text-white rounded-full px-5 py-2 my-2"
+                  className="btn bg-green-400 text-white rounded-full px-5 py-2 my-2"
                 >
                   Read More →
                 </Link>

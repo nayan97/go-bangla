@@ -55,7 +55,7 @@ const handleBooking = async () => {
 
 
   return (
-    <div className="p-6 bg-white rounded shadow-lg space-y-4 border border-amber-100">
+    <div className="p-6 bg-base-100 rounded shadow-lg space-y-4 border border-base-200">
       <h2 className="text-2xl font-bold">Book This Tour</h2>
 
       <div className="space-y-2">
@@ -114,7 +114,7 @@ const handleBooking = async () => {
         </select>
 
         <button
-          className="btn btn-primary w-full"
+          className="btn btn-success text-white rounded-full px-5 py-2 my-2 w-full"
           onClick={handleBooking}
           disabled={!user}
         >

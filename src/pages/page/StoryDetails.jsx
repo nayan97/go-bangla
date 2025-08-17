@@ -49,9 +49,9 @@ const StoryDetails = () => {
 
   return (
     <div className="max-w-3xl mx-auto p-4">
-      <div className="bg-white rounded-2xl shadow-md p-6">
+      <div className="bg-base-200 rounded-2xl shadow-md p-6">
         <h1 className="text-3xl font-bold mb-4">{story.title}</h1>
-        <p className="text-sm text-gray-500 mb-2">
+        <p className="text-sm mb-2">
           Posted by <strong>{story.username || story.email}</strong> on{" "}
           {new Date(story.createdAt).toLocaleString()}
         </p>
@@ -64,7 +64,7 @@ const StoryDetails = () => {
           />
         )}
 
-        <p className="text-gray-800 whitespace-pre-line mb-6">{story.content}</p>
+        <p className="whitespace-pre-line mb-6">{story.content}</p>
 
         {story.imageUrls?.[1] && (
           <img
