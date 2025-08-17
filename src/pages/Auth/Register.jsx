@@ -128,7 +128,7 @@ const Register = () => {
 
               <button
                 type="submit"
-                className="btn btn-neutral w-full mt-4"
+                className="btn bg-green-400 w-full mt-4 text-white"
                 disabled={loading}
               >
                 {loading ? "Registering..." : "Register"}
@@ -136,7 +136,7 @@ const Register = () => {
 
               <p className="text-center mt-4 text-sm">
                 Already have an account?{" "}
-                <a href="/login" className="text-blue-600 hover:underline">
+                <a href="/login" className="text-bg-green-400 hover:underline">
                   Login here
                 </a>
               </p>

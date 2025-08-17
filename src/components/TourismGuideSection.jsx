@@ -43,7 +43,7 @@ const TourismGuideSection = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="grid md:grid-cols-1 lg:grid-cols-3 gap-6 mt-4"
+            className="grid md:grid-cols-1 lg:grid-cols-3 gap-6 mt-4 auto-rows-fr"
           >
             {packages.map((pkg) => (
               <div key={pkg._id} className="bg-base-100 rounded-xl shadow-md p-4">
@@ -54,7 +54,7 @@ const TourismGuideSection = () => {
                 />
                 <div className="mt-3">
                   <p className="text-sm">{pkg.type}</p>
-                  <h3 className="text-lg font-bold">{pkg.title}</h3>
+                  <h3 className="text-lg font-bold line-clamp-2 min-h-[3rem]">{pkg.title}</h3>
                   <p className="text-green-400 font-semibold mt-1">
                     ${pkg.price}
                   </p>

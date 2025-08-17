@@ -91,15 +91,15 @@ const Login = () => {
                 <button
                   type="button"
                   onClick={handleForgotPassword}
-                  className="link link-hover text-blue-600"
+                  className="link link-hover text-green-400"
                 >
                   Forgot password?
                 </button>
               </div>
-              <button className="btn btn-neutral mt-4">Login</button>
+              <button className="btn bg-green-400 mt-4 text-white">Login</button>
               <p className="text-center mt-4">
                 Don’t have an account?{" "}
-                <a href="/register" className="text-blue-600 hover:underline">
+                <a href="/register" className="text-green-400 hover:underline">
                   Register here
                 </a>
               </p>

@@ -68,49 +68,57 @@ const Trips = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+              className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr"
             >
               {filteredPackages.map((pkg) => (
                 <div
                   key={pkg._id}
-                  className="bg-base-100 rounded-xl shadow-md p-4"
+                  className="bg-base-100 rounded-xl shadow-md p-4 flex flex-col h-full"
                 >
                   <img
                     src={pkg.images?.[0] || "/placeholder.jpg"}
                     alt={pkg.title}
                     className="rounded-md h-40 w-full object-cover"
                   />
-                  <div className="mt-3">
-                    <p className="text-sm text-gray-500">{pkg.type}</p>
-                    <h3 className="text-lg font-bold">{pkg.title}</h3>
-                    <p className="text-blue-600 font-semibold mt-1">
+                  <div className="mt-3 flex flex-col flex-grow">
+                    <p className="text-sm">{pkg.type}</p>
+
+                    {/* Limit title height but allow wrap */}
+                    <h3 className="text-lg font-bold line-clamp-2 min-h-[3rem]">
+                      {pkg.title}
+                    </h3>
+
+                    <p className="text-green-400 font-semibold mt-1">
                       ${pkg.price}
                     </p>
-                    <button
-                      onClick={() => navigate(`/package-details/${pkg._id}`)}
-                      className="mt-3 btn btn-outline btn-sm"
-                    >
-                      View Package
-                    </button>
+
+                    {/* Push button to bottom */}
+                    <div className="mt-auto">
+                      <button
+                        onClick={() => navigate(`/package-details/${pkg._id}`)}
+                        className="mt-3 btn btn-outline btn-sm w-full"
+                      >
+                        View Package
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}
+
               {filteredPackages.length === 0 && (
-                <p className="col-span-full text-center text-gray-500">
-                  No packages found.
-                </p>
+                <p className="col-span-full text-center">No packages found.</p>
               )}
             </motion.div>
           )}
         </div>
-
         {/* Right: Filter Sidebar (25%) */}
-       <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-        className="md:w-1/4 bg-base-100 rounded-xl shadow p-4 h-fit">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="md:w-1/4 bg-base-100 rounded-xl shadow p-4 h-fit"
+        >
           <h3 className="text-lg font-semibold mb-4">Filter & Sort</h3>
 
           {/* Search */}
@@ -141,7 +149,9 @@ const Trips = () => {
 
           {/* Price Range */}
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Price Range</label>
+            <label className="block text-sm font-medium mb-1">
+              Price Range
+            </label>
             <div className="flex items-center gap-2">
               <input
                 type="number"
@@ -174,8 +184,7 @@ const Trips = () => {
           >
             Reset Filters
           </button>
-      </motion.div>
-
+        </motion.div>
         //
       </div>
     </div>

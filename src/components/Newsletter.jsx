@@ -9,7 +9,7 @@ const Newsletter = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:3000/api/newsletter", {
+      const res = await fetch("https://gobangla-server.vercel.app/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),

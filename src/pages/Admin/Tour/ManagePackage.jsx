@@ -93,7 +93,7 @@ const ManagePackage = () => {
               />
               <div className="mt-3">
                 <p className="text-sm text-gray-500">{pkg.type}</p>
-                <h3 className="text-lg font-bold">{pkg.title}</h3>
+                <h3 className="text-lg font-bold line-clamp-2 min-h-[3rem]">{pkg.title}</h3>
                 <p className="text-blue-600 font-semibold mt-1">${pkg.price}</p>
           
                   <div className="card-actions justify-end mt-4">
